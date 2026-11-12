@@ -80,8 +80,10 @@ const placeholders = (src) => [...src.matchAll(/\[([^\]]+)\](?!\()/g)].map((m) =
 // Same look as the app (mesa-app-ui/src/theme/tokens.ts): Inter Tight in four
 // weights, a neutral base, and Ember as the one color. Keep the two in step.
 const css = `
-:root{--bg:#FAFAFA;--surface:#FFFFFF;--soft:#F3F3F3;--text:#111111;--muted:rgba(17,17,17,.74);--faint:rgba(17,17,17,.6);--line:rgba(17,17,17,.08);--ember:#B84C24;--ember-hover:#9C3F1C;--on-ember:#FFFFFF;--accent:#B84C24;--shadow:0 18px 40px -22px rgba(17,17,17,.3);--sans:"Inter Tight",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
-@media(prefers-color-scheme:dark){:root{--bg:#111111;--surface:#1B1B1B;--soft:rgba(250,250,250,.08);--text:#FAFAFA;--muted:rgba(250,250,250,.7);--faint:rgba(250,250,250,.55);--line:rgba(250,250,250,.1);--on-ember:#FAFAFA;--accent:#F0A98A;--shadow:none}}
+:root{--bg:#FAFAFA;--surface:#FFFFFF;--soft:#F3F3F3;--text:#111111;--muted:rgba(17,17,17,.74);--faint:rgba(17,17,17,.6);--line:rgba(17,17,17,.08);--ember:#B84C24;--ember-hover:#9C3F1C;--on-ember:#FFFFFF;--accent:#B84C24;--shadow:0 18px 40px -22px rgba(17,17,17,.3);color-scheme:light;--sans:"Inter Tight",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#111111;--surface:#1B1B1B;--soft:rgba(250,250,250,.08);--text:#FAFAFA;--muted:rgba(250,250,250,.7);--faint:rgba(250,250,250,.55);--line:rgba(250,250,250,.1);--on-ember:#FAFAFA;--accent:#F0A98A;--shadow:none;color-scheme:dark}}
+:root[data-theme=dark]{--bg:#111111;--surface:#1B1B1B;--soft:rgba(250,250,250,.08);--text:#FAFAFA;--muted:rgba(250,250,250,.7);--faint:rgba(250,250,250,.55);--line:rgba(250,250,250,.1);--on-ember:#FAFAFA;--accent:#F0A98A;--shadow:none;color-scheme:dark}
+:root[data-theme=light]{color-scheme:light}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
@@ -95,6 +97,14 @@ header.site{display:flex;align-items:center;justify-content:space-between;paddin
 nav{display:flex;align-items:center;gap:22px;font:400 15px/1 var(--sans)}
 nav a{color:var(--muted);text-decoration:none}
 nav a:hover,nav a[aria-current]{color:var(--text)}
+button.theme{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--text);cursor:pointer}
+button.theme:hover{border-color:var(--faint)}
+button.theme:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.theme svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+button.theme .sun{display:none}
+:root[data-theme=dark] button.theme .sun{display:block}
+:root[data-theme=dark] button.theme .moon{display:none}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) button.theme .sun{display:block}:root:not([data-theme=light]) button.theme .moon{display:none}}
 nav a.btn{color:var(--on-ember);background:var(--ember);padding:10px 16px;border-radius:999px;font-weight:600}
 nav a.btn:hover{background:var(--ember-hover);color:var(--on-ember)}
 @media(max-width:620px){header.site{flex-wrap:wrap;gap:14px 12px}nav{gap:10px 18px;flex-wrap:wrap}nav a.btn{padding:9px 14px}}
@@ -144,6 +154,13 @@ footer{border-top:1px solid var(--line);padding:24px 0 48px;color:var(--faint);f
 footer a,footer em{color:var(--faint)}
 `;
 
+// Light/dark switch. With no saved choice the site follows the device; the
+// first click saves the opposite of what is showing. The head script runs before
+// paint so a saved choice never flashes the wrong theme.
+const themeInit = `try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}`;
+const themeToggle = `(function(){var b=document.getElementById('theme');if(!b)return;var m=matchMedia('(prefers-color-scheme:dark)');function cur(){return document.documentElement.dataset.theme||(m.matches?'dark':'light')}function sync(){b.setAttribute('aria-label',cur()==='dark'?'Switch to light mode':'Switch to dark mode')}b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';document.documentElement.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync()});m.addEventListener('change',sync);sync()})()`;
+const themeButton = `<button class="theme" id="theme" type="button" aria-label="Switch to dark mode"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>`;
+
 function page({ path, title, description, body, doc = false }) {
   const nav =
     [
@@ -152,7 +169,7 @@ function page({ path, title, description, body, doc = false }) {
       ['/support/', 'Support'],
     ]
       .map(([href, label]) => `<a href="${href}"${href === path ? ' aria-current="page"' : ''}>${label}</a>`)
-      .join('') + '<a class="btn" href="/#join">Get the app</a>';
+      .join('') + '<a class="btn" href="/#join">Get the app</a>' + themeButton;
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -161,7 +178,8 @@ function page({ path, title, description, body, doc = false }) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
-<link rel="icon" href="/favicon.png">
+<link rel="icon" href="/mark.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="64x64">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700;800&display=swap">
@@ -170,6 +188,7 @@ function page({ path, title, description, body, doc = false }) {
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${SITE}/icon.png">
 <meta name="color-scheme" content="light dark">
+<script>${themeInit}</script>
 <style>${css}</style>
 </head>
 <body>
@@ -186,6 +205,7 @@ ${body}
 <span><a href="/privacy/">Privacy</a> · <a href="/support/">Support</a> · <a href="mailto:${EMAIL}">${EMAIL}</a></span>
 </footer>
 </div>
+<script>${themeToggle}</script>
 </body>
 </html>
 `;
