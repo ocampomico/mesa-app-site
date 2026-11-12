@@ -116,7 +116,7 @@ tr:last-child td{border-bottom:0}
 .pill img{width:26px;height:26px;border-radius:50%}
 .pill b{color:var(--ember);font-weight:600}
 .hero{text-align:center;padding:40px 0 8px}
-.hero h1{font-size:clamp(42px,9vw,84px);line-height:1.02;margin:22px auto 20px;max-width:12em}
+.hero h1{font-size:clamp(42px,9vw,84px);line-height:1.02;margin:8px auto 20px;max-width:12em}
 .lede{font-size:clamp(19px,2.6vw,22px);line-height:1.5;color:var(--muted);max-width:30em;margin:0 auto 28px}
 .ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
 .btn-lg{display:inline-block;padding:14px 24px;border-radius:999px;background:var(--ember);color:#fff;text-decoration:none;font:600 16px/1 var(--sans)}
@@ -216,7 +216,6 @@ ${shot(name, label, note)}
 
 const landing = `
 <section class="hero">
-<span class="pill"><img src="/icon.png" alt="" width="26" height="26"><span><b>New</b> · AI picks that know your taste</span></span>
 <h1>Find your place at the <em>table.</em></h1>
 <p class="lede">Mesa finds the food and drink spots worth your time, picked for how you like to eat, and turns any afternoon into a crawl.</p>
 <div class="ctas" id="join">
