@@ -77,73 +77,73 @@ const placeholders = (src) => [...src.matchAll(/\[([^\]]+)\](?!\()/g)].map((m) =
 
 // --- layout ---
 
+// Same look as the app (mesa-app-ui/src/theme/tokens.ts): Inter Tight in four
+// weights, a neutral base, and Ember as the one color. Keep the two in step.
 const css = `
-:root{--bg:#FAF7F2;--surface:#FFFFFF;--soft:#F1ECE4;--text:#16130F;--muted:rgba(22,19,15,.66);--line:rgba(22,19,15,.11);--ember:#B84C24;--ember-wash:rgba(184,76,36,.1);--link:#B84C24;--serif:Newsreader,Georgia,Cambria,"Times New Roman",serif;--sans:Figtree,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+:root{--bg:#FAFAFA;--surface:#FFFFFF;--soft:#F3F3F3;--text:#111111;--muted:rgba(17,17,17,.74);--faint:rgba(17,17,17,.6);--line:rgba(17,17,17,.08);--ember:#B84C24;--ember-hover:#9C3F1C;--on-ember:#FFFFFF;--accent:#B84C24;--shadow:0 18px 40px -22px rgba(17,17,17,.3);--sans:"Inter Tight",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#111111;--surface:#1B1B1B;--soft:rgba(250,250,250,.08);--text:#FAFAFA;--muted:rgba(250,250,250,.7);--faint:rgba(250,250,250,.55);--line:rgba(250,250,250,.1);--on-ember:#FAFAFA;--accent:#F0A98A;--shadow:none}}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font:400 18px/1.6 var(--serif)}
-a{color:var(--link);text-underline-offset:3px}
-em{font-style:italic;color:var(--ember)}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+em{font-style:normal;color:var(--accent)}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 .doc{max-width:720px}
 header.site{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
-.brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font:800 24px/1 var(--sans);letter-spacing:-.02em}
+.brand{display:flex;align-items:center;gap:8px;color:var(--accent);text-decoration:none;font:800 22px/1 var(--sans);letter-spacing:.14em}
 .brand img{width:34px;height:34px}
-nav{display:flex;align-items:center;gap:22px;font:500 15px/1 var(--sans)}
+nav{display:flex;align-items:center;gap:22px;font:400 15px/1 var(--sans)}
 nav a{color:var(--muted);text-decoration:none}
 nav a:hover,nav a[aria-current]{color:var(--text)}
-nav a.btn{color:#fff;background:var(--ember);padding:10px 16px;border-radius:999px}
-nav a.btn:hover{background:#9c3f1c;color:#fff}
+nav a.btn{color:var(--on-ember);background:var(--ember);padding:10px 16px;border-radius:999px;font-weight:600}
+nav a.btn:hover{background:var(--ember-hover);color:var(--on-ember)}
 @media(max-width:620px){header.site{flex-wrap:wrap;gap:14px 12px}nav{gap:10px 18px;flex-wrap:wrap}nav a.btn{padding:9px 14px}}
 main{padding:24px 0 72px}
-h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;text-wrap:balance}
-h1{font-size:clamp(34px,6vw,48px);line-height:1.1;margin:8px 0 18px}
-h2{font-size:26px;line-height:1.2;margin:48px 0 10px;padding-top:28px;border-top:1px solid var(--line);scroll-margin-top:16px}
+h1,h2,h3{font-family:var(--sans);font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(30px,5vw,40px);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin:8px 0 18px}
+h2{font-size:22px;line-height:1.25;margin:44px 0 10px;padding-top:28px;border-top:1px solid var(--line);scroll-margin-top:16px}
 .doc h2:first-of-type{border-top:0;padding-top:0}
-h3{font-size:19px;margin:26px 0 4px}
+h3{font-size:17px;line-height:1.3;margin:26px 0 4px}
 p,ul{margin:0 0 16px}
 ul{padding-left:22px}
 li{margin-bottom:8px}
-strong{font-weight:500;background:linear-gradient(transparent 62%,var(--ember-wash) 0)}
-.back{display:inline-block;margin-top:40px;font:500 15px var(--sans);text-decoration:none}
-.table{overflow-x:auto;margin:0 0 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
-table{border-collapse:collapse;width:100%;min-width:520px;font-size:16px;line-height:1.45}
+strong{font-weight:600}
+.back{display:inline-block;margin-top:40px;font:600 15px var(--sans);text-decoration:none}
+.table{overflow-x:auto;margin:0 0 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px;line-height:1.45}
 th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
-th{font:500 14px var(--sans);color:var(--muted)}
+th{font:600 13px var(--sans);color:var(--faint)}
 tr:last-child td{border-bottom:0}
-.eyebrow{display:inline-block;font:600 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ember);margin-bottom:14px}
-.pill{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:500 14px/1 var(--sans);color:var(--muted)}
-.pill img{width:26px;height:26px;border-radius:50%}
-.pill b{color:var(--ember);font-weight:600}
+.eyebrow{display:inline-block;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
 .hero{text-align:center;padding:40px 0 8px}
-.hero h1{font-size:clamp(42px,9vw,84px);line-height:1.02;margin:8px auto 20px;max-width:12em}
-.lede{font-size:clamp(19px,2.6vw,22px);line-height:1.5;color:var(--muted);max-width:30em;margin:0 auto 28px}
+.hero h1{font-size:clamp(38px,7.5vw,68px);line-height:1.04;letter-spacing:-.035em;margin:8px auto 20px;max-width:12em}
+.lede{font-size:clamp(17px,2.2vw,20px);line-height:1.5;color:var(--muted);max-width:30em;margin:0 auto 28px}
 .ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
-.btn-lg{display:inline-block;padding:14px 24px;border-radius:999px;background:var(--ember);color:#fff;text-decoration:none;font:600 16px/1 var(--sans)}
-.btn-lg:hover{background:#9c3f1c}
-.soon{display:inline-block;padding:13px 22px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font:500 15px/1 var(--sans);color:var(--text)}
+.btn-lg{display:inline-block;padding:14px 24px;border-radius:999px;background:var(--ember);color:var(--on-ember);text-decoration:none;font:600 15px/1 var(--sans)}
+.btn-lg:hover{background:var(--ember-hover)}
+.soon{display:inline-block;padding:13px 22px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font:600 15px/1 var(--sans);color:var(--text)}
 .shots{display:flex;gap:18px;overflow-x:auto;padding:48px 24px 44px;margin:0 -24px -20px;scroll-snap-type:x proximity;justify-content:safe center}
-.phone{flex:0 0 auto;width:200px;aspect-ratio:9/19;border-radius:30px;border:1px solid var(--line);background:linear-gradient(160deg,var(--surface),var(--soft));box-shadow:0 18px 40px -22px rgba(22,19,15,.35);overflow:hidden;position:relative;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;font:500 13px/1.35 var(--sans);color:var(--muted)}
+.phone{flex:0 0 auto;width:200px;aspect-ratio:9/19;border-radius:30px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);overflow:hidden;position:relative;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;font:400 13px/1.35 var(--sans);color:var(--muted)}
 .phone span{display:block}
-.phone span b{display:block;color:var(--ember);font:600 15px var(--sans);margin-bottom:4px}
+.phone span b{display:block;color:var(--accent);font:700 15px var(--sans);margin-bottom:4px}
 .phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.rule{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;padding:0;color:var(--muted);font:500 14px var(--sans);margin:44px 0 0}
+.rule{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;padding:0;color:var(--faint);font:400 14px var(--sans);margin:44px 0 0}
 .feature{display:grid;gap:40px;align-items:center;grid-template-columns:1fr;padding:72px 0 0}
 .feature .phone{margin:0 auto;width:min(240px,70vw)}
-.feature h3{font-size:clamp(28px,4.6vw,40px);line-height:1.12;margin:0 0 14px}
+.feature h3{font-size:clamp(24px,3.6vw,32px);line-height:1.15;letter-spacing:-.025em;margin:0 0 14px}
 .feature p{color:var(--muted);max-width:30em}
 .chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:20px 0 0;list-style:none}
-.chips li{margin:0;padding:7px 13px;border-radius:999px;background:var(--soft);font:500 14px/1 var(--sans);color:var(--text)}
+.chips li{margin:0;padding:7px 13px;border-radius:999px;background:var(--soft);font:400 14px/1 var(--sans);color:var(--text)}
 @media(min-width:820px){.feature{grid-template-columns:1fr 1fr;gap:72px}.feature.flip .copy{order:2}}
 .values{margin-top:88px;border-top:1px solid var(--line)}
 .value{padding:44px 0;border-bottom:1px solid var(--line);display:grid;gap:12px}
-.value h2{margin:0;padding:0;border:0;font-size:clamp(28px,4.6vw,40px);line-height:1.12}
+.value h2{margin:0;padding:0;border:0;font-size:clamp(24px,3.6vw,32px);line-height:1.15;letter-spacing:-.025em}
 .value p{margin:0;color:var(--muted);max-width:34em}
 @media(min-width:820px){.value{grid-template-columns:1fr 1fr;gap:72px;align-items:baseline}}
 .closing{text-align:center;padding:88px 0 8px}
-.closing h2{border:0;margin:0 auto 24px;padding:0;font-size:clamp(34px,6vw,56px);line-height:1.08;max-width:12em}
-footer{border-top:1px solid var(--line);padding:24px 0 48px;color:var(--muted);font:400 14px var(--sans);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
-footer a{color:var(--muted)}
+.closing h2{border:0;margin:0 auto 24px;padding:0;font-size:clamp(30px,5vw,44px);font-weight:800;line-height:1.08;letter-spacing:-.03em;max-width:12em}
+footer{border-top:1px solid var(--line);padding:24px 0 48px;color:var(--faint);font:400 14px var(--sans);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+footer a,footer em{color:var(--faint)}
 `;
 
 function page({ path, title, description, body, doc = false }) {
@@ -166,18 +166,18 @@ function page({ path, title, description, body, doc = false }) {
 <link rel="icon" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700;800&display=swap">
 <link rel="apple-touch-icon" href="/icon.png">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${SITE}/icon.png">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="light dark">
 <style>${css}</style>
 </head>
 <body>
 <div class="wrap${doc ? ' doc' : ''}">
 <header class="site">
-<a class="brand" href="/"><img src="/mark.svg" alt="" width="34" height="34">mesa.</a>
+<a class="brand" href="/"><img src="/mark.svg" alt="" width="34" height="34">mesa</a>
 <nav>${nav}</nav>
 </header>
 <main>
@@ -235,16 +235,16 @@ ${shot('saved', 'Saved', 'Your shortlist, in one place')}
 <p class="rule"><span>Vibe</span><span>Budget</span><span>Cuisines</span><span>Allergies &amp; diet</span><span>Walk or drive</span></p>
 
 <div id="features">
-${feature({ id: 'explore', eyebrow: 'Explore', title: 'Spots near you, ranked for <em>you.</em>', text: 'Set your vibe, budget, cuisines and how far you will walk or drive. Mesa ranks what is nearby around all of it, and updates the moment you change your mind.', chips: ['Vibe', 'Budget', 'Cuisines', 'Walk or drive'], name: 'explore', label: 'Explore', note: 'Spots near you, ranked for you' })}
-${feature({ id: 'order', flip: true, eyebrow: 'Place pages', title: 'Know what to <em>order.</em>', text: 'Open a spot and see what to try, what people say, and where it has been featured, before you walk in.', chips: ['What to try', 'What people say', 'As seen in'], name: 'place', label: 'Place page', note: 'What to order and who featured it' })}
-${feature({ id: 'wildcard', eyebrow: 'Wildcard', title: "Can't decide? <em>Swipe.</em>", text: 'A deck of great open spots, one at a time. Swipe right to save one, left to pass.', chips: ['Open now', 'Swipe right to save', 'Left to pass'], name: 'wildcard', label: 'Wildcard', note: 'Swipe to save or pass' })}
-${feature({ id: 'crawls', flip: true, eyebrow: 'Crawls', title: 'Turn an afternoon into a <em>crawl.</em>', text: 'Pick a theme and a vibe, and Mesa plans the stops, on foot or by car.', chips: ['Pick a theme', 'Pick a vibe', 'On foot or by car'], name: 'crawl', label: 'Crawls', note: 'Stops planned by theme and vibe' })}
+${feature({ id: 'explore', eyebrow: 'Explore', title: 'Spots near you, ranked for <em>you.</em>', text: 'Tell Mesa your vibe, your budget, what you’re always craving and how far you’ll go. Everything nearby gets ranked around that, with a match % on every spot.', chips: ['Vibe', 'Budget', 'Cuisines', 'Walk or drive'], name: 'explore', label: 'Explore', note: 'Spots near you, ranked for you' })}
+${feature({ id: 'order', flip: true, eyebrow: 'Place pages', title: 'Know what to <em>order.</em>', text: 'Every spot shows the dishes people keep ordering, the word on the street and who has written about it. Walk in already knowing.', chips: ['Crowd favorites', 'The word on the street', 'As seen in'], name: 'place', label: 'Place page', note: 'What to order and who featured it' })}
+${feature({ id: 'wildcard', eyebrow: 'Wildcard', title: "Can't decide? <em>Swipe.</em>", text: 'Say what you’re in the mood for and Mesa deals you a hand of spots that are open right now. Right to save, left to pass.', chips: ['Open now', 'Swipe right to save', 'Left to pass'], name: 'wildcard', label: 'Wildcard', note: 'Swipe to save or pass' })}
+${feature({ id: 'crawls', flip: true, eyebrow: 'Crawls', title: 'Turn an afternoon into a <em>crawl.</em>', text: 'Coffee, pastries, tacos, ramen, pints or cocktails. Pick a theme and a vibe, and Mesa plans two to four stops, on foot or by car.', chips: ['Pick a theme', 'Pick a vibe', 'On foot or by car'], name: 'crawl', label: 'Crawls', note: 'Stops planned by theme and vibe' })}
 </div>
 
 <div class="values">
 <div class="value"><h2>Picked for how you <em>eat.</em></h2><p>Tell Mesa your allergies and diet and it steers suggestions away from obvious conflicts. It cannot guarantee any dish is allergen-free, so always confirm with the restaurant.</p></div>
-<div class="value"><h2>Real places, <em>real</em> sources.</h2><p>Place details come from Google Maps, and Mesa shows where a spot has been featured, so you can see why it made the list.</p></div>
-<div class="value"><h2>AI that you <em>control.</em></h2><p>AI picks help rank spots and plan crawls. Turn them off anytime in Settings, and Mesa ranks with its own scoring and sends nothing to the AI provider.</p></div>
+<div class="value"><h2>Real places, <em>real</em> sources.</h2><p>Place details come from Google Maps, dishes and summaries come from public reviews, and press mentions link to the article. You can always see why a spot made the list.</p></div>
+<div class="value"><h2>AI that you <em>control.</em></h2><p>AI picks help rank spots and plan crawls. They’re off until you say yes. Turn them off again anytime in Settings and Mesa ranks with its own scoring. <a href="/privacy/#ai-picks">See what’s shared</a>.</p></div>
 </div>
 
 <section class="closing">
