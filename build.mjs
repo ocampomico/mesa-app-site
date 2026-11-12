@@ -124,8 +124,6 @@ tr:last-child td{border-bottom:0}
 .soon{display:inline-block;padding:13px 22px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font:600 15px/1 var(--sans);color:var(--text)}
 .shots{display:flex;gap:18px;overflow-x:auto;padding:48px 24px 44px;margin:0 -24px -20px;scroll-snap-type:x proximity;justify-content:safe center}
 .phone{flex:0 0 auto;width:200px;aspect-ratio:9/19;border-radius:30px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);overflow:hidden;position:relative;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;font:400 13px/1.35 var(--sans);color:var(--muted)}
-.phone span{display:block}
-.phone span b{display:block;color:var(--accent);font:700 15px var(--sans);margin-bottom:4px}
 .phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .rule{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;padding:0;color:var(--faint);font:400 14px var(--sans);margin:44px 0 0}
 .feature{display:grid;gap:40px;align-items:center;grid-template-columns:1fr;padding:72px 0 0}
@@ -193,26 +191,34 @@ ${body}
 `;
 }
 
-// Phone frames: drop a PNG/JPG named as below into static/shots/ and it replaces the placeholder.
-const shot = (name, label, note) => {
+// Phone frames: drop a PNG/JPG named as below into static/shots/ and the
+// screen appears. A screen with no screenshot yet is left off the page, and so
+// is the feature section that goes with it, rather than showing an empty frame.
+const shot = (name, label) => {
   for (const ext of ['png', 'jpg', 'webp']) {
     if (existsSync(join(root, 'static', 'shots', `${name}.${ext}`))) {
       return `<div class="phone"><img src="/shots/${name}.${ext}" alt="${esc(label)} screen in Mesa" loading="lazy"></div>`;
     }
   }
-  return `<div class="phone" role="img" aria-label="${esc(label)} screen, screenshot coming soon"><span><b>${esc(label)}</b>${esc(note)}</span></div>`;
+  return '';
 };
 
-const feature = ({ id, flip, eyebrow, title, text, chips, name, label, note }) => `
-<section class="feature${flip ? ' flip' : ''}" id="${id}">
+// Sections alternate sides in the order they end up on the page.
+let shown = 0;
+const feature = ({ id, eyebrow, title, text, chips, name, label }) => {
+  const frame = shot(name, label);
+  if (!frame) return '';
+  return `
+<section class="feature${shown++ % 2 ? ' flip' : ''}" id="${id}">
 <div class="copy">
 <span class="eyebrow">${eyebrow}</span>
 <h3>${title}</h3>
 <p>${text}</p>
 <ul class="chips">${chips.map((c) => `<li>${c}</li>`).join('')}</ul>
 </div>
-${shot(name, label, note)}
+${frame}
 </section>`;
+};
 
 const landing = `
 <section class="hero">
@@ -225,20 +231,20 @@ const landing = `
 </section>
 
 <div class="shots" aria-label="Mesa app screens">
-${shot('explore', 'Explore', 'Spots near you, ranked for you')}
-${shot('place', 'Place page', 'What to order and who featured it')}
-${shot('wildcard', 'Wildcard', 'Swipe to save or pass')}
-${shot('crawl', 'Crawls', 'Stops planned by theme and vibe')}
-${shot('saved', 'Saved', 'Your shortlist, in one place')}
+${shot('explore', 'Explore')}
+${shot('place', 'Place page')}
+${shot('wildcard', 'Wildcard')}
+${shot('crawl', 'Crawls')}
+${shot('saved', 'Saved')}
 </div>
 
 <p class="rule"><span>Vibe</span><span>Budget</span><span>Cuisines</span><span>Allergies &amp; diet</span><span>Walk or drive</span></p>
 
 <div id="features">
-${feature({ id: 'explore', eyebrow: 'Explore', title: 'Spots near you, ranked for <em>you.</em>', text: 'Tell Mesa your vibe, your budget, what you’re always craving and how far you’ll go. Everything nearby gets ranked around that, with a match % on every spot.', chips: ['Vibe', 'Budget', 'Cuisines', 'Walk or drive'], name: 'explore', label: 'Explore', note: 'Spots near you, ranked for you' })}
-${feature({ id: 'order', flip: true, eyebrow: 'Place pages', title: 'Know what to <em>order.</em>', text: 'Every spot shows the dishes people keep ordering, the word on the street and who has written about it. Walk in already knowing.', chips: ['Crowd favorites', 'The word on the street', 'As seen in'], name: 'place', label: 'Place page', note: 'What to order and who featured it' })}
-${feature({ id: 'wildcard', eyebrow: 'Wildcard', title: "Can't decide? <em>Swipe.</em>", text: 'Say what you’re in the mood for and Mesa deals you a hand of spots that are open right now. Right to save, left to pass.', chips: ['Open now', 'Swipe right to save', 'Left to pass'], name: 'wildcard', label: 'Wildcard', note: 'Swipe to save or pass' })}
-${feature({ id: 'crawls', flip: true, eyebrow: 'Crawls', title: 'Turn an afternoon into a <em>crawl.</em>', text: 'Coffee, pastries, tacos, ramen, pints or cocktails. Pick a theme and a vibe, and Mesa plans two to four stops, on foot or by car.', chips: ['Pick a theme', 'Pick a vibe', 'On foot or by car'], name: 'crawl', label: 'Crawls', note: 'Stops planned by theme and vibe' })}
+${feature({ id: 'explore', eyebrow: 'Explore', title: 'Spots near you, ranked for <em>you.</em>', text: 'Tell Mesa your vibe, your budget, what you’re always craving and how far you’ll go. Everything nearby gets ranked around that, with a match % on every spot.', chips: ['Vibe', 'Budget', 'Cuisines', 'Walk or drive'], name: 'explore', label: 'Explore' })}
+${feature({ id: 'order', eyebrow: 'Place pages', title: 'Know what to <em>order.</em>', text: 'Every spot shows the dishes people keep ordering, the word on the street and who has written about it. Walk in already knowing.', chips: ['Crowd favorites', 'The word on the street', 'As seen in'], name: 'place', label: 'Place page' })}
+${feature({ id: 'wildcard', eyebrow: 'Wildcard', title: "Can't decide? <em>Swipe.</em>", text: 'Say what you’re in the mood for and Mesa deals you a hand of spots that are open right now. Right to save, left to pass.', chips: ['Open now', 'Swipe right to save', 'Left to pass'], name: 'wildcard', label: 'Wildcard' })}
+${feature({ id: 'crawls', eyebrow: 'Crawls', title: 'Turn an afternoon into a <em>crawl.</em>', text: 'Coffee, pastries, tacos, ramen, pints or cocktails. Pick a theme and a vibe, and Mesa plans two to four stops, on foot or by car.', chips: ['Pick a theme', 'Pick a vibe', 'On foot or by car'], name: 'crawl', label: 'Crawls' })}
 </div>
 
 <div class="values">
