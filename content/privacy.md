@@ -1,6 +1,6 @@
 # Mesa Privacy Policy
 
-_Effective date: [date]_
+_Effective date: November 11, 2026_
 
 Mesa ("we", "us") helps you find food and drink spots and plan crawls. This policy explains what we collect, why, who we share it with, and the choices you have.
 
@@ -34,7 +34,7 @@ We share data only with service providers that run Mesa for us:
 - **Supabase** stores your account, profile, photo, preferences and saved items.
 - **Amazon Web Services** hosts our server.
 - **Google Maps Platform (Places API)**: we send search areas and search terms to find places. Place details, photos and reviews come from Google.
-- **Anthropic (Claude AI)**, only if you turn on **AI picks**: your taste preferences (including allergies and diet), a summary of the kinds of spots you save, your searches and crawl requests, and the nearby places being ranked. We never send your name, email, photo or GPS coordinates. You can turn AI picks off anytime in Account settings. With it off, Mesa ranks with its own scoring and sends none of this to the AI provider. [Confirm against Anthropic's current commercial terms: how long API inputs are kept, and that they aren't used to train models. Then state it here.]
+- **Anthropic (Claude AI)**, only if you turn on **AI picks**: your taste preferences (including allergies and diet), a summary of the kinds of spots you save, your searches and crawl requests, and the nearby places being ranked. We never send your name, email, photo or GPS coordinates. You can turn AI picks off anytime in Account settings. With it off, Mesa ranks with its own scoring and sends none of this to the AI provider. Anthropic deletes API inputs and outputs from its systems within 30 days, except content it flags for violating its usage policy or must keep by law, and doesn't use them to train its models.
 - **Anthropic and Google Gemini (AI), public place data only**: to summarize reviews and find press coverage of a place, we send its name, address and public reviews. Nothing about you is included.
 - **Apple / Google sign-in**, if you choose them.
 
@@ -42,7 +42,7 @@ We may also share data if the law requires it.
 
 ## How long we keep it
 
-We keep your account data until you delete your account. Server logs (no request contents) are kept for [number] days. Usage counters with no personal data are kept for 90 days.
+We keep your account data until you delete your account. Server logs (no request contents) are kept for up to 3 days. Usage counters with no personal data are kept for 90 days.
 
 ## Your choices
 
@@ -63,4 +63,4 @@ We'll update this page and its effective date when this policy changes, and tell
 
 ## Contact
 
-[Your name or company] · [support@mesamesa.app](mailto:support@mesamesa.app)
+Mesa · [support@mesamesa.app](mailto:support@mesamesa.app)
