@@ -78,8 +78,7 @@ const placeholders = (src) => [...src.matchAll(/\[([^\]]+)\](?!\()/g)].map((m) =
 // --- layout ---
 
 const css = `
-:root{--bg:#FAFAFA;--surface:#FFFFFF;--text:#111111;--muted:rgba(17,17,17,.66);--line:rgba(17,17,17,.12);--ember:#B84C24;--link:#B84C24}
-@media (prefers-color-scheme:dark){:root{--bg:#111111;--surface:#1A1A1A;--text:#FAFAFA;--muted:rgba(250,250,250,.7);--line:rgba(250,250,250,.16);--link:#F0A98A}}
+:root{--bg:#FFFDF9;--surface:#FFFFFF;--text:#111111;--muted:rgba(17,17,17,.66);--line:rgba(17,17,17,.12);--ember:#B84C24;--link:#B84C24}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif}
@@ -107,7 +106,6 @@ tr:last-child td{border-bottom:0}
 .features{list-style:none;padding:0;margin:40px 0 0;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .features li{margin:0;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
 .features b{display:block;font-weight:400;color:var(--ember)}
-@media (prefers-color-scheme:dark){.features b{color:#F0A98A}}
 .features span{color:var(--muted);font-size:15px;line-height:1.5;display:block;margin-top:4px}
 .soon{display:inline-block;margin-top:28px;padding:10px 18px;border-radius:999px;background:var(--ember);color:#FAFAFA;font-size:15px}
 footer{border-top:1px solid var(--line);padding:24px 0 48px;color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
@@ -134,7 +132,7 @@ function page({ path, title, description, body }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${SITE}/icon.png">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <style>${css}</style>
 </head>
 <body>
