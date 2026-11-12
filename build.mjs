@@ -94,7 +94,7 @@ nav a{color:var(--muted);text-decoration:none}
 nav a:hover,nav a[aria-current]{color:var(--text)}
 nav a.btn{color:#fff;background:var(--ember);padding:10px 16px;border-radius:999px}
 nav a.btn:hover{background:#9c3f1c;color:#fff}
-@media(max-width:620px){nav a.hide-sm{display:none}}
+@media(max-width:620px){header.site{flex-wrap:wrap;gap:14px 12px}nav{gap:10px 18px;flex-wrap:wrap}nav a.btn{padding:9px 14px}}
 main{padding:24px 0 72px}
 h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;text-wrap:balance}
 h1{font-size:clamp(34px,6vw,48px);line-height:1.1;margin:8px 0 18px}
@@ -149,11 +149,11 @@ footer a{color:var(--muted)}
 function page({ path, title, description, body, doc = false }) {
   const nav =
     [
-      ['/#features', 'Features', 'hide-sm'],
-      ['/privacy/', 'Privacy', 'hide-sm'],
-      ['/support/', 'Support', ''],
+      ['/#features', 'Features'],
+      ['/privacy/', 'Privacy'],
+      ['/support/', 'Support'],
     ]
-      .map(([href, label, cls]) => `<a href="${href}"${cls ? ` class="${cls}"` : ''}${href === path ? ' aria-current="page"' : ''}>${label}</a>`)
+      .map(([href, label]) => `<a href="${href}"${href === path ? ' aria-current="page"' : ''}>${label}</a>`)
       .join('') + '<a class="btn" href="/#join">Get the app</a>';
   return `<!doctype html>
 <html lang="en">
