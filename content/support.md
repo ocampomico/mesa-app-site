@@ -14,7 +14,9 @@ Tap the round sliders button beside the bottom bar. Set your vibes, budget, cuis
 
 ### What is "AI picks", and can I turn it off?
 
-With AI picks on, Mesa sends your taste preferences, a summary of what you save, and your searches to Anthropic's Claude to rank spots for you and plan crawls. Turn it on or off anytime in Profile → Settings → AI picks. With it off, Mesa ranks with its own scoring. The [privacy policy](/privacy/) has the details.
+Mesa asks once, after you sign in, whether to turn on "Picks made for you". That's AI picks, and it stays off unless you say yes. With it on, Mesa sends your taste preferences (including any allergies and diet), a summary of what you save, and your searches and crawl requests to Anthropic's Claude to rank spots for you and plan crawls. Your name, email, photo and GPS coordinates are never sent.
+
+Tapped "Not now", or changed your mind? Switch it on or off anytime in Profile → Settings → AI picks. With it off, Mesa ranks with its own scoring. The [privacy policy](/privacy/) lists exactly what is shared.
 
 ### A place is closed, moved or has wrong hours
 
