@@ -20,6 +20,7 @@ The rest of this page is the detail behind each of those.
 |---|---|---|
 | Account details | Email, name, handle, home city, profile photo (if you add one) | Sign-in and your profile |
 | Sign-in data | A user ID from Apple or Google if you sign in with them | Sign-in |
+| Invite status | Whether your account is on the waitlist or let in, the invite code you used and when | Opening Mesa to a few people at a time |
 | Location | Your device's location while you use the app, or a city you pick | Finding spots near you and planning crawls |
 | Taste preferences | Vibes, budget, cuisines, walk/drive limits, plus anything you type in your own words | Personalizing results |
 | Allergies & diet (optional) | Allergies you pick or type (e.g. shellfish, mushrooms) and diets (vegetarian, vegan, halal, kosher) | Steering suggestions and dishes away from things you can't eat |
@@ -111,7 +112,7 @@ Data travels between the app, our server and these providers over encrypted (HTT
 
 | Data | Kept for |
 |---|---|
-| Account, profile, photo, preferences, saved spots, saved and completed crawls | Until you remove them or delete your account |
+| Account, profile, photo, preferences, invite status, saved spots, saved and completed crawls | Until you remove them or delete your account |
 | Crawls you plan but don't save or finish | 7 days |
 | Browsing signals (spots opened or swiped away) | 90 days |
 | Daily usage counts per account | 90 days |
