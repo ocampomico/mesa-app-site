@@ -2,7 +2,7 @@
 
 _Effective date: November 13, 2026_
 
-Mesa ("we", "us") helps you find food and drink spots and plan crawls. This policy explains what we collect, why, who we share it with, how long we keep it, and the choices you have.
+Mesa ("we", "us"), based in California, helps you find food and drink spots and plan crawls. This policy explains what we collect, why, who we share it with, how long we keep it, and the choices you have.
 
 ## The short version
 
@@ -86,6 +86,10 @@ Separately from AI picks, Mesa uses Anthropic and Google Gemini to summarize a p
 
 Your recent searches, the last city you picked by hand, your light or dark mode setting and your AI picks choice are stored on your device, not in your account. Deleting the app removes them.
 
+## This website
+
+mesamesa.app sets no cookies and runs no analytics or ads. It loads its font from Google Fonts, so Google sees your IP address and browser, as with any site that uses it. If you switch between light and dark mode, that choice is saved in your browser.
+
 ## Who we share data with
 
 We share data only with service providers that run Mesa for us:
@@ -131,6 +135,8 @@ Data travels between the app, our server and these providers over encrypted (HTT
 
 Depending on where you live, you may have rights to access, correct, export or delete your data, or to object to how it's used. Email us to use them. We won't treat you any differently for asking.
 
+**If you live in California:** we don't sell or share your personal information, as California law defines those words, and we don't use it for targeted ads. Mesa doesn't track you across other apps and websites, so it behaves the same whether your browser or phone sends a Do Not Track or Global Privacy Control signal or not.
+
 ## Children
 
 Mesa is only for people 18 and older, and we don't knowingly collect data from anyone younger. If you think someone under 18 has made an account, email us and we'll delete it and its data.
@@ -141,4 +147,4 @@ We'll update this page and its effective date when this policy changes, and tell
 
 ## Contact
 
-Mesa · [support@mesamesa.app](mailto:support@mesamesa.app)
+Mesa · California, USA · [support@mesamesa.app](mailto:support@mesamesa.app)

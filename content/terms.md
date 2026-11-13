@@ -2,7 +2,7 @@
 
 _Effective date: November 13, 2026_
 
-These terms are the agreement between you and Mesa ("we", "us") for using the Mesa app and this website. By creating an account or using Mesa, you agree to them. Our [privacy policy](/privacy/) explains what we collect, who we share it with and how long we keep it, and is part of these terms.
+These terms are the agreement between you and Mesa ("we", "us"), based in California, for using the Mesa app and this website. By creating an account or using Mesa, you agree to them. Our [privacy policy](/privacy/) explains what we collect, who we share it with and how long we keep it, and is part of these terms.
 
 ## The short version
 
@@ -134,6 +134,8 @@ If something goes wrong, email us first and give us 30 days to try to sort it ou
 
 If we can't, either of us can take the dispute to court, including small claims court. These terms don't require arbitration.
 
+These terms are governed by the laws of the State of California and applicable US federal law, without regard to conflict-of-law rules. Disputes go to the state or federal courts located in California. If the consumer laws where you live give you the right to bring a claim in your own courts, or under your own country's law, you keep that right.
+
 ## Changes to these terms
 
 When we change these terms, we'll update this page and its effective date. For a change that affects your rights, we'll tell you in the app or by email at least 14 days before it takes effect. Changes required by law, or that only add new features, can take effect sooner.
@@ -149,4 +151,4 @@ If you don't agree to a change, delete your account before it takes effect and t
 
 ## Contact
 
-Mesa · [support@mesamesa.app](mailto:support@mesamesa.app)
+Mesa · California, USA · [support@mesamesa.app](mailto:support@mesamesa.app)
