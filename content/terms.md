@@ -9,14 +9,14 @@ These terms are the agreement between you and Mesa ("we", "us") for using the Me
 - Mesa suggests places to eat and drink. It doesn't run those places, take bookings or take payments.
 - Place details can be out of date. Check hours and anything that matters to you before you go.
 - Mesa can't promise a dish is allergen-free. Always confirm with the restaurant.
-- If a crawl includes drinks, you need to be of legal drinking age, and nobody on it should drive after drinking.
+- Mesa is for people 18 and older. If a crawl includes drinks, you need to be of legal drinking age, and nobody on it should drive after drinking.
 - Places can't pay to rank higher on Mesa.
 - Use Mesa for yourself, not to copy, scrape or overload it.
 - You can delete your account anytime from inside the app.
 
 ## Who can use Mesa
 
-You need to be at least 13 to use Mesa. If you're under the age of majority where you live, a parent or guardian needs to agree to these terms for you.
+You need to be at least 18 to use Mesa. Mesa suggests bars and plans crawls that can include drinks, so it isn't meant for anyone younger. By creating an account, you confirm you're 18 or older. If we learn an account belongs to someone under 18, we'll delete it.
 
 Mesa is invite-only for now. You can create an account without an invite code, but it stays on the waitlist until it has one. We decide when to let accounts in and may stop accepting codes at any time.
 
@@ -45,7 +45,7 @@ Adding allergies or a diet helps Mesa steer suggestions away from obvious confli
 
 ## Drinks and crawls
 
-Some crawls and suggestions include bars, breweries and cocktails. Mesa doesn't check anyone's age. If you're under the legal drinking age where you are, don't use Mesa to find alcohol and don't pick drink themes for a crawl. If you are of age, drink responsibly and never drive after drinking. If a crawl involves alcohol, pick walking or arrange a ride.
+Some crawls and suggestions include bars, breweries and cocktails. Being 18 doesn't mean you can drink everywhere: in the US the drinking age is 21. Mesa doesn't check anyone's age, so if you're under the legal drinking age where you are, don't use Mesa to find alcohol and don't pick drink themes for a crawl. If you are of age, drink responsibly and never drive after drinking. If a crawl involves alcohol, pick walking or arrange a ride.
 
 ## AI picks
 

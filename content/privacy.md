@@ -1,6 +1,6 @@
 # Mesa Privacy Policy
 
-_Effective date: November 12, 2026_
+_Effective date: November 13, 2026_
 
 Mesa ("we", "us") helps you find food and drink spots and plan crawls. This policy explains what we collect, why, who we share it with, how long we keep it, and the choices you have.
 
@@ -133,7 +133,7 @@ Depending on where you live, you may have rights to access, correct, export or d
 
 ## Children
 
-Mesa isn't directed to children under 13, and we don't knowingly collect their data. If you think a child has made an account, email us and we'll delete it.
+Mesa is only for people 18 and older, and we don't knowingly collect data from anyone younger. If you think someone under 18 has made an account, email us and we'll delete it and its data.
 
 ## Changes
 
