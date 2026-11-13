@@ -261,7 +261,7 @@ ${frame}
 const landing = `
 <section class="hero">
 <h1>Find your place at the <em>table.</em></h1>
-<p class="lede">Mesa ranks the food and drink spots near you by how you like to eat, tells you what to order when you get there, and plans a crawl when you can’t pick just one.</p>
+<p class="lede">Mesa finds food and drink spots worth your time. From food crawls to date night, explore it all.</p>
 <div class="ctas" id="join">
 <span class="soon">Coming soon to the App Store</span>
 <a class="btn-lg" href="mailto:${EMAIL}?subject=Tell%20me%20when%20Mesa%20launches">Get notified at launch</a>
@@ -279,10 +279,10 @@ ${shot('saved', 'Saved')}
 <p class="rule"><strong>Ranked by your</strong><span>Vibe</span><span>Budget</span><span>Cuisines</span><span>Allergies &amp; diet</span><span>Walk or drive</span></p>
 
 <div id="features">
-${feature({ id: 'explore', eyebrow: 'Explore', title: 'Spots near you, ranked for <em>you.</em>', text: 'Tell Mesa your vibe, your budget, what you’re always craving and how far you’ll go. Everything nearby gets ranked around that, with a match % on every spot. Big chains stay out unless you search for them by name.', chips: ['Match %', 'Open now', 'Hidden Gem', 'Local Favorite'], name: 'explore', label: 'Explore' })}
-${feature({ id: 'order', eyebrow: 'Place pages', title: 'Know what to <em>order.</em>', text: 'Every spot shows the dishes people keep mentioning in reviews, a short read on what they say, and links to anyone who has written about it. Walk in already knowing what to get.', chips: ['Crowd favorites', 'The word on the street', 'As seen in'], name: 'place', label: 'Place page' })}
-${feature({ id: 'wildcard', eyebrow: 'Wildcard', title: "Can't decide? <em>Swipe.</em>", text: 'Say what you’re in the mood for and Mesa deals you a hand of spots that are open right now. Swipe right to save, left to pass, and tap a card for the full story.', chips: ['Open now only', 'Undo a swipe', 'Saves to your profile'], name: 'wildcard', label: 'Wildcard' })}
-${feature({ id: 'crawls', eyebrow: 'Crawls', title: 'Turn an afternoon into a <em>crawl.</em>', text: 'Coffee, pastries, tacos, ramen, pints or cocktails. Pick a theme and a vibe, and Mesa plans two to four stops in order, on foot or by car, with the route on a map.', chips: ['2 to 4 stops', 'On foot or by car', '“End with dessert”'], name: 'crawl', label: 'Crawls' })}
+${feature({ id: 'explore', eyebrow: 'Explore', title: 'Spots near you, ranked for <em>you.</em>', text: 'Set your vibe, budget, cuisine, and how far you’re willing to walk or drive. Mesa ranks what’s near you based on your needs.', chips: ['Match %', 'Open now', 'Hidden Gem', 'Local Favorite'], name: 'explore', label: 'Explore' })}
+${feature({ id: 'order', eyebrow: 'Spots', title: 'Know what to <em>order.</em>', text: 'See what the crowd favorites are and what’s notable on the menu before you walk in.', chips: ['Crowd favorites', 'The word on the street', 'As seen in'], name: 'place', label: 'Place page' })}
+${feature({ id: 'wildcard', eyebrow: 'Wildcard', title: "Can’t decide? Just <em>swipe.</em>", text: 'Endless options at your fingertips. Swipe right to save or left to pass, and keep exploring.', chips: ['Open now only', 'Undo a swipe', 'Saves to your profile'], name: 'wildcard', label: 'Wildcard' })}
+${feature({ id: 'crawls', eyebrow: 'Crawls', title: 'Turn an afternoon into a <em>crawl.</em>', text: 'Pick a theme and vibe, and let Mesa plan the rest.', chips: ['2 to 4 stops', 'On foot or by car', '“End with dessert”'], name: 'crawl', label: 'Crawls' })}
 </div>
 
 <div class="values">
