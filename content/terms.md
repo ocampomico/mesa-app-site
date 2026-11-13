@@ -1,8 +1,8 @@
 # Mesa Terms of Service
 
-_Effective date: November 12, 2026_
+_Effective date: November 13, 2026_
 
-These terms are the agreement between you and Mesa ("we", "us") for using the Mesa app and this website. By creating an account or using Mesa, you agree to them. Our [privacy policy](/privacy/) explains what we collect and how we use it.
+These terms are the agreement between you and Mesa ("we", "us") for using the Mesa app and this website. By creating an account or using Mesa, you agree to them. Our [privacy policy](/privacy/) explains what we collect, who we share it with and how long we keep it, and is part of these terms.
 
 ## The short version
 
@@ -10,6 +10,7 @@ These terms are the agreement between you and Mesa ("we", "us") for using the Me
 - Place details can be out of date. Check hours and anything that matters to you before you go.
 - Mesa can't promise a dish is allergen-free. Always confirm with the restaurant.
 - If a crawl includes drinks, you need to be of legal drinking age, and nobody on it should drive after drinking.
+- Places can't pay to rank higher on Mesa.
 - Use Mesa for yourself, not to copy, scrape or overload it.
 - You can delete your account anytime from inside the app.
 
@@ -34,17 +35,23 @@ Mesa ranks places using what you tell it, information from Google Maps, public r
 - **Places are independent.** Mesa isn't affiliated with the places it shows and isn't responsible for their food, service, prices or premises.
 - **Routes are estimates.** Walking and driving times and crawl routes are approximate. Follow local laws, road signs and your own judgment, and pay attention to where you're going.
 
+## No paid rankings
+
+Places can't pay Mesa to appear in your results, rank higher or get a badge, and we don't earn money when you visit one. If that ever changes, paid or sponsored results will be clearly labeled as such, and we'll update these terms before it happens.
+
 ## Allergies and diet
 
 Adding allergies or a diet helps Mesa steer suggestions away from obvious conflicts. **Mesa can't guarantee that any place or dish is allergen-free or meets a diet**, and its suggestions aren't medical advice. Always tell the restaurant about your allergies and confirm before you eat.
 
 ## Drinks and crawls
 
-Some crawls and suggestions include bars, breweries and cocktails. Only drink if you're of legal drinking age where you are, drink responsibly, and never drive after drinking. If a crawl involves alcohol, pick walking or arrange a ride.
+Some crawls and suggestions include bars, breweries and cocktails. Mesa doesn't check anyone's age. If you're under the legal drinking age where you are, don't use Mesa to find alcohol and don't pick drink themes for a crawl. If you are of age, drink responsibly and never drive after drinking. If a crawl involves alcohol, pick walking or arrange a ride.
 
 ## AI picks
 
-AI picks are optional and off until you turn them on. When they're on, suggestions and crawl plans are written with help from an AI model. Mesa checks them against your budget, distance and allergies, but AI output can still be wrong or odd. Treat it like a suggestion from a friend, not a fact. See the [privacy policy](/privacy/#ai-picks) for what's shared.
+AI picks are optional and off until you turn them on. When they're on, Mesa sends your taste preferences, a summary of what you save and your searches to Anthropic, which provides the AI model, to rank places and plan crawls. Your name, email, photo and GPS coordinates aren't sent. Anthropic doesn't use this data to train its models, and neither do we. The [privacy policy](/privacy/#ai-picks) lists exactly what is shared.
+
+Mesa checks AI suggestions against your budget, distance and allergies, but AI output can still be wrong or odd. Treat it like a suggestion from a friend, not a fact.
 
 ## Using Mesa fairly
 
@@ -59,7 +66,11 @@ Don't:
 
 ## Your content
 
-Your profile photo, name, handle, preferences and anything you type into Mesa stay yours. You give us permission to store, process and display them only as needed to run Mesa for you, including sending them to the service providers listed in the privacy policy. That permission ends when you delete the content or your account, except for copies we must keep by law.
+Your profile photo, name, handle, preferences and anything you type into Mesa stay yours. You give us permission to store, process and display them only as needed to run Mesa for you. That includes sending them to the service providers named in the [privacy policy](/privacy/#who-we-share-data-with): Supabase for storage, Amazon Web Services for hosting, Google for maps and place search, and Anthropic for AI picks if you turn them on. We don't sell your content or use it to train AI models.
+
+We may use totals that don't identify anyone, such as how many searches Mesa ran in a day, to run and improve Mesa.
+
+Your permission ends when you delete the content or your account, except for copies we must keep by law.
 
 ## Our content and other people's
 
@@ -67,21 +78,33 @@ The Mesa app, name, logo and design belong to us. You can use the app for your o
 
 Place details, photos and reviews come from Google Maps. By using Mesa you also agree to the [Google Maps Additional Terms of Service](https://maps.google.com/help/terms_maps/) and [Google's privacy policy](https://policies.google.com/privacy). Press links open other websites, which we don't control and aren't responsible for.
 
+## Copyright complaints
+
+If you think something on Mesa infringes your copyright, email [support@mesamesa.app](mailto:support@mesamesa.app) with:
+
+- your name and how to reach you;
+- the work you think is being infringed;
+- where it appears in Mesa (for example, the handle of the profile or the name of the place);
+- a statement that you believe in good faith the use isn't authorized, and that your notice is accurate;
+- your physical or electronic signature, and, if you're acting for the owner, a statement that you're authorized to.
+
+We'll look into it and remove the material if it infringes. If we remove something you posted, we'll tell you, and you can reply if you think we got it wrong. We close the accounts of people who infringe repeatedly.
+
 ## Price
 
-Mesa is free. If we ever charge for anything, we'll tell you the price up front and you'll choose whether to pay.
+Mesa is free. If we ever add paid features, we'll show the price, how renewal works and how to cancel before you pay, and they'll come with their own terms. Nothing you use for free today will start charging you without your say-so.
 
 ## Changes to Mesa
 
-Mesa is new and will change. We may add, change or remove features, and when demand is high Mesa may fall back to its own scoring or to information it already has. We may also stop offering Mesa. If we shut it down, we'll give notice in the app or by email where we can.
+Mesa is new and will change. We may add, change or remove features, and when demand is high Mesa may fall back to its own scoring or to information it already has. We may also stop offering Mesa. If we shut it down, we'll give at least 30 days' notice in the app or by email.
 
 ## Ending your account
 
-You can delete your account anytime in Profile → Settings → Delete account, or by emailing us. See [how to delete your account](/support/#delete-your-account).
+You can delete your account anytime in Profile → Settings → Delete account, or by emailing us. See [how to delete your account](/support/#delete-your-account). Before you do, you can email us for a copy of your data.
 
-We may suspend or close an account that breaks these terms, puts others at risk or exposes us to legal trouble. Where it's reasonable, we'll tell you why first.
+We may suspend or close an account that breaks these terms, puts others at risk or exposes us to legal trouble. Unless we need to act right away to protect someone or comply with the law, we'll tell you why first and give you a chance to respond. If you think we got it wrong, email us and we'll take another look. When we close an account, you can still ask for a copy of your data for 30 days.
 
-The sections on your content, our content, disclaimers, liability and disputes keep applying after an account is closed.
+These sections keep applying after an account is closed: Your content, Our content and other people's, Disclaimers, Limits on liability, If you got Mesa from the App Store, Disputes and General.
 
 ## Disclaimers
 
@@ -89,11 +112,11 @@ Mesa is provided **"as is" and "as available"**. To the extent the law allows, w
 
 ## Limits on liability
 
-To the extent the law allows, Mesa isn't liable for indirect, incidental, special or consequential losses, or for lost profits, data or goodwill. We also aren't liable for what happens at the places Mesa suggests, including food, drink, service and injuries there.
+To the extent the law allows, Mesa isn't liable for indirect, incidental, special or consequential losses, or for lost profits, data or goodwill. We also aren't liable for what happens at the places Mesa suggests, including food, drink, service and injuries there, unless we caused it.
 
 To the extent the law allows, our total liability for any claim about Mesa is limited to the greater of what you paid us in the last 12 months or US$50.
 
-Some places don't allow these limits, so they may not apply to you. Nothing in these terms limits liability that can't be limited by law, or takes away rights you have under the consumer laws where you live.
+**These limits don't apply** to liability for death or personal injury caused by our negligence, to fraud, to gross negligence or willful misconduct, or to anything else the law doesn't let us limit. Nothing in these terms takes away rights you have under the consumer laws where you live, including in the EU, the UK and California.
 
 ## If you got Mesa from the App Store
 
@@ -107,11 +130,22 @@ Apple and its subsidiaries are third-party beneficiaries of these terms and can 
 
 ## Disputes
 
-If something goes wrong, email us first. Most problems can be sorted out that way, and we'll try in good faith.
+If something goes wrong, email us first and give us 30 days to try to sort it out. Most problems can be fixed that way.
+
+If we can't, either of us can take the dispute to court, including small claims court. These terms don't require arbitration.
 
 ## Changes to these terms
 
-We'll update this page and its effective date when these terms change, and tell you in the app if the change is significant. If you keep using Mesa after a change takes effect, the new terms apply. If you don't agree, you can delete your account.
+When we change these terms, we'll update this page and its effective date. For a change that affects your rights, we'll tell you in the app or by email at least 14 days before it takes effect. Changes required by law, or that only add new features, can take effect sooner.
+
+If you don't agree to a change, delete your account before it takes effect and the old terms keep applying until then. If you keep using Mesa after it takes effect, the new terms apply.
+
+## General
+
+- These terms and the privacy policy are the whole agreement between you and us about Mesa.
+- If a court finds part of these terms can't be enforced, the rest still applies.
+- If we don't enforce a part of these terms right away, we can still enforce it later.
+- You can't transfer these terms or your account to someone else. We can transfer them if Mesa is sold or reorganized, and we'll tell you if that happens.
 
 ## Contact
 
