@@ -2,7 +2,7 @@
 
 Something not working, or a spot that's wrong? Email [support@mesamesa.app](mailto:support@mesamesa.app) and we'll get back to you. It helps to say what phone you use and what you were doing when it happened.
 
-Looking for what Mesa does with your data? That's all in the [privacy policy](/privacy/).
+Looking for what Mesa does with your data? That's in the [privacy policy](/privacy/). The rules for using Mesa are in the [terms of service](/terms/).
 
 ## Getting started
 
@@ -12,11 +12,11 @@ Yes. Everything Mesa shows is ranked for your taste, and your saved spots, crawl
 
 ### Why is Mesa asking for an invite code?
 
-Mesa is invite-only for now while we open it up a few people at a time. You can still create an account. Until it has a code, it stays on the waitlist. If someone sent you a code, enter it on that screen; dashes and capitals don't matter. No code yet? Your account is saved, so you can sign in again once you have one. You can also sign out or delete the account from the same screen.
+Mesa is invite-only for now while we open it up a few people at a time. You can still create an account; it waits on the waitlist until you enter a code. If someone sent you one, type it on that screen. Dashes and capitals don't matter. No code yet? Your account is saved, so sign in again once you have one. You can also sign out or delete the account from the same screen.
 
 ### I didn't get the confirmation or password email
 
-Check spam, then try again from the sign-in screen: "Forgot password?" sends a new reset link, and signing in with an unconfirmed email offers to resend the confirmation. Open the link on the phone that has Mesa and tap "Open Mesa" on the page that appears. If you open it on a computer, your email is still confirmed. Just sign in on your phone.
+Check spam first. Then try again from the sign-in screen: "Forgot password?" sends a new reset link, and signing in with an unconfirmed email offers to resend the confirmation. Open the link on the phone that has Mesa and tap "Open Mesa" on the page that appears. Opened a confirmation link on a computer? Your email is still confirmed, so just sign in on your phone.
 
 ### Mesa can't find my location
 
@@ -65,7 +65,7 @@ Tapped "Not now", or changed your mind? Switch it on or off anytime in Profile â
 
 ### A place is closed, moved or has wrong hours
 
-Place details come from Google Maps and can lag behind real life. Email us the name of the spot and what's wrong, and check with the place before you go. Holiday hours aren't shown yet.
+Place details come from Google Maps and can lag behind real life. Email us the name of the spot and what's wrong. Holiday hours aren't shown yet, so check with the place before you go.
 
 ### What does "Reported closed" mean?
 

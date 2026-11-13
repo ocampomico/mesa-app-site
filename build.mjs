@@ -3,7 +3,7 @@
 //   node build.mjs            build; warn about unfilled [placeholders]
 //   node build.mjs --strict   same, but fail if any remain (used by the deploy)
 //
-// Pages: / (landing), /privacy/ and /support/ (from content/*.md), and
+// Pages: / (landing), /privacy/, /terms/ and /support/ (from content/*.md), and
 // /auth/confirm/ and /auth/reset/ (where email links land, then open the app).
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -31,6 +31,7 @@ function inline(text) {
 function markdown(src) {
   const lines = src.replace(/\r/g, '').split('\n');
   const html = [];
+  const toc = [];
   let i = 0;
   const isBlank = (l) => l === undefined || l.trim() === '';
   while (i < lines.length) {
@@ -40,6 +41,7 @@ function markdown(src) {
     } else if (/^#{1,3} /.test(line)) {
       const level = line.match(/^#+/)[0].length;
       const text = line.slice(level + 1).trim();
+      if (level === 2) toc.push([slug(text), inline(text)]);
       html.push(level === 1 ? `<h1>${inline(text)}</h1>` : `<h${level} id="${slug(text)}">${inline(text)}</h${level}>`);
       i++;
     } else if (line.startsWith('|')) {
@@ -70,7 +72,7 @@ function markdown(src) {
       html.push(`<p>${inline(para.join(' '))}</p>`);
     }
   }
-  return html.join('\n');
+  return { html: html.join('\n'), toc };
 }
 
 /** [Text in brackets] that isn't a link: something still to fill in. */
@@ -90,8 +92,18 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
 a{color:var(--accent);text-underline-offset:3px}
 em{font-style:normal;color:var(--accent)}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-.doc{max-width:720px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.docs{display:grid;gap:8px 72px;grid-template-columns:minmax(0,1fr)}
+.doc{max-width:760px;min-width:0}
+.toc{font:400 14px/1.4 var(--sans);border-bottom:1px solid var(--line);padding:4px 0 18px;margin-bottom:8px}
+.toc p{font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:0 0 12px}
+.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.toc li{margin:0}
+.toc a{display:block;color:var(--muted);text-decoration:none;padding:7px 12px;border-radius:999px;background:var(--soft)}
+.toc a:hover,.toc a[aria-current]{color:var(--text)}
+.toc .alt{margin-top:22px}
+.toc .alt a{display:inline;padding:0;background:none;color:var(--accent)}
+@media(min-width:1000px){.docs{grid-template-columns:240px minmax(0,1fr)}.toc{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow-y:auto;border:0;padding:30px 0 0;margin:0}.toc ol{display:block;border-left:1px solid var(--line)}.toc a{background:none;border-radius:0;padding:6px 0 6px 16px;margin-left:-1px;border-left:2px solid transparent}.toc a[aria-current]{border-left-color:var(--accent)}}
 header.site{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
 .brand{display:flex;align-items:center;gap:8px;color:var(--accent);text-decoration:none;font:800 22px/1 var(--sans);letter-spacing:.14em}
 .brand img{width:34px;height:34px}
@@ -133,24 +145,25 @@ tr:last-child td{border-bottom:0}
 .btn-lg{display:inline-block;padding:14px 24px;border-radius:999px;background:var(--ember);color:var(--on-ember);text-decoration:none;font:600 15px/1 var(--sans)}
 .btn-lg:hover{background:var(--ember-hover)}
 .soon{display:inline-block;padding:13px 22px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font:600 15px/1 var(--sans);color:var(--text)}
-.shots{display:flex;gap:18px;overflow-x:auto;padding:48px 24px 44px;margin:0 -24px -20px;scroll-snap-type:x proximity;justify-content:safe center}
-.phone{flex:0 0 auto;width:200px;aspect-ratio:9/19;border-radius:30px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);overflow:hidden;position:relative;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;font:400 13px/1.35 var(--sans);color:var(--muted)}
+.shots{display:flex;gap:22px;overflow-x:auto;padding:48px 24px 44px;margin:0 -24px -20px;scroll-snap-type:x proximity;justify-content:safe center}
+.phone{flex:0 0 auto;width:220px;aspect-ratio:9/19;border-radius:30px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);overflow:hidden;position:relative;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;font:400 13px/1.35 var(--sans);color:var(--muted)}
 .phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.rule{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;padding:0;color:var(--faint);font:400 14px var(--sans);margin:44px 0 0}
+.rule{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:6px 20px;padding:0;color:var(--faint);font:400 14px var(--sans);margin:44px 0 0}
 .feature{display:grid;gap:40px;align-items:center;grid-template-columns:1fr;padding:72px 0 0}
-.feature .phone{margin:0 auto;width:min(240px,70vw)}
+.rule strong{color:var(--text);font-weight:600}
+.feature .phone{margin:0 auto;width:min(260px,70vw)}
 .feature h3{font-size:clamp(24px,3.6vw,32px);line-height:1.15;letter-spacing:-.025em;margin:0 0 14px}
-.feature p{color:var(--muted);max-width:30em}
+.feature p{color:var(--muted);max-width:32em}
 .chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:20px 0 0;list-style:none}
 .chips li{margin:0;padding:7px 13px;border-radius:999px;background:var(--soft);font:400 14px/1 var(--sans);color:var(--text)}
-@media(min-width:820px){.feature{grid-template-columns:1fr 1fr;gap:72px}.feature.flip .copy{order:2}}
-.values{margin-top:88px;border-top:1px solid var(--line)}
-.value{padding:44px 0;border-bottom:1px solid var(--line);display:grid;gap:12px}
-.value h2{margin:0;padding:0;border:0;font-size:clamp(24px,3.6vw,32px);line-height:1.15;letter-spacing:-.025em}
-.value p{margin:0;color:var(--muted);max-width:34em}
-@media(min-width:820px){.value{grid-template-columns:1fr 1fr;gap:72px;align-items:baseline}}
+@media(min-width:820px){.feature{grid-template-columns:1fr 1fr;gap:96px}.feature .copy{justify-self:end;max-width:32em}.feature.flip .copy{order:2;justify-self:start}}
+.values{margin-top:96px;display:grid;gap:16px}
+.value{padding:32px;border:1px solid var(--line);border-radius:20px;background:var(--surface);display:grid;gap:12px;align-content:start}
+.value h2{margin:0;padding:0;border:0;font-size:clamp(22px,2.6vw,28px);line-height:1.15;letter-spacing:-.025em}
+.value p{margin:0;color:var(--muted)}
+@media(min-width:900px){.values{grid-template-columns:repeat(3,1fr);gap:20px}}
 .closing{text-align:center;padding:88px 0 8px}
-.closing h2{border:0;margin:0 auto 24px;padding:0;font-size:clamp(30px,5vw,44px);font-weight:800;line-height:1.08;letter-spacing:-.03em;max-width:12em}
+.closing h2{border:0;margin:0 auto 16px;padding:0;font-size:clamp(30px,5vw,44px);font-weight:800;line-height:1.08;letter-spacing:-.03em;max-width:12em}
 footer{border-top:1px solid var(--line);padding:24px 0 48px;color:var(--faint);font:400 14px var(--sans);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 footer a,footer em{color:var(--faint)}
 [hidden]{display:none!important}
@@ -166,7 +179,7 @@ const themeInit = `try{var t=localStorage.getItem('theme');if(t==='light'||t==='
 const themeToggle = `(function(){var b=document.getElementById('theme');if(!b)return;var m=matchMedia('(prefers-color-scheme:dark)');function cur(){return document.documentElement.dataset.theme||(m.matches?'dark':'light')}function sync(){b.setAttribute('aria-label',cur()==='dark'?'Switch to light mode':'Switch to dark mode')}b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';document.documentElement.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync()});m.addEventListener('change',sync);sync()})()`;
 const themeButton = `<button class="theme" id="theme" type="button" aria-label="Switch to dark mode"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>`;
 
-function page({ path, title, description, body, doc = false, noindex = false }) {
+function page({ path, title, description, body, noindex = false }) {
   const nav =
     [
       ['/#features', 'Features'],
@@ -197,7 +210,7 @@ ${noindex ? '<meta name="robots" content="noindex">\n' : ''}<link rel="canonical
 <style>${css}</style>
 </head>
 <body>
-<div class="wrap${doc ? ' doc' : ''}">
+<div class="wrap">
 <header class="site">
 <a class="brand" href="/"><img src="/mark.svg" alt="" width="34" height="34">mesa</a>
 <nav>${nav}</nav>
@@ -207,7 +220,7 @@ ${body}
 </main>
 <footer>
 <span>© ${new Date().getFullYear()} Mesa · find your place at the <em>table</em></span>
-<span><a href="/privacy/">Privacy</a> · <a href="/support/">Support</a> · <a href="mailto:${EMAIL}">${EMAIL}</a></span>
+<span><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/support/">Support</a> · <a href="mailto:${EMAIL}">${EMAIL}</a></span>
 </footer>
 </div>
 <script>${themeToggle}</script>
@@ -248,7 +261,7 @@ ${frame}
 const landing = `
 <section class="hero">
 <h1>Find your place at the <em>table.</em></h1>
-<p class="lede">Mesa finds the food and drink spots worth your time, picked for how you like to eat, and turns any afternoon into a crawl.</p>
+<p class="lede">Mesa ranks the food and drink spots near you by how you like to eat, tells you what to order when you get there, and plans a crawl when you can’t pick just one.</p>
 <div class="ctas" id="join">
 <span class="soon">Coming soon to the App Store</span>
 <a class="btn-lg" href="mailto:${EMAIL}?subject=Tell%20me%20when%20Mesa%20launches">Get notified at launch</a>
@@ -263,23 +276,24 @@ ${shot('crawl', 'Crawls')}
 ${shot('saved', 'Saved')}
 </div>
 
-<p class="rule"><span>Vibe</span><span>Budget</span><span>Cuisines</span><span>Allergies &amp; diet</span><span>Walk or drive</span></p>
+<p class="rule"><strong>Ranked by your</strong><span>Vibe</span><span>Budget</span><span>Cuisines</span><span>Allergies &amp; diet</span><span>Walk or drive</span></p>
 
 <div id="features">
-${feature({ id: 'explore', eyebrow: 'Explore', title: 'Spots near you, ranked for <em>you.</em>', text: 'Tell Mesa your vibe, your budget, what you’re always craving and how far you’ll go. Everything nearby gets ranked around that, with a match % on every spot.', chips: ['Vibe', 'Budget', 'Cuisines', 'Walk or drive'], name: 'explore', label: 'Explore' })}
-${feature({ id: 'order', eyebrow: 'Place pages', title: 'Know what to <em>order.</em>', text: 'Every spot shows the dishes people keep ordering, the word on the street and who has written about it. Walk in already knowing.', chips: ['Crowd favorites', 'The word on the street', 'As seen in'], name: 'place', label: 'Place page' })}
-${feature({ id: 'wildcard', eyebrow: 'Wildcard', title: "Can't decide? <em>Swipe.</em>", text: 'Say what you’re in the mood for and Mesa deals you a hand of spots that are open right now. Right to save, left to pass.', chips: ['Open now', 'Swipe right to save', 'Left to pass'], name: 'wildcard', label: 'Wildcard' })}
-${feature({ id: 'crawls', eyebrow: 'Crawls', title: 'Turn an afternoon into a <em>crawl.</em>', text: 'Coffee, pastries, tacos, ramen, pints or cocktails. Pick a theme and a vibe, and Mesa plans two to four stops, on foot or by car.', chips: ['Pick a theme', 'Pick a vibe', 'On foot or by car'], name: 'crawl', label: 'Crawls' })}
+${feature({ id: 'explore', eyebrow: 'Explore', title: 'Spots near you, ranked for <em>you.</em>', text: 'Tell Mesa your vibe, your budget, what you’re always craving and how far you’ll go. Everything nearby gets ranked around that, with a match % on every spot. Big chains stay out unless you search for them by name.', chips: ['Match %', 'Open now', 'Hidden Gem', 'Local Favorite'], name: 'explore', label: 'Explore' })}
+${feature({ id: 'order', eyebrow: 'Place pages', title: 'Know what to <em>order.</em>', text: 'Every spot shows the dishes people keep mentioning in reviews, a short read on what they say, and links to anyone who has written about it. Walk in already knowing what to get.', chips: ['Crowd favorites', 'The word on the street', 'As seen in'], name: 'place', label: 'Place page' })}
+${feature({ id: 'wildcard', eyebrow: 'Wildcard', title: "Can't decide? <em>Swipe.</em>", text: 'Say what you’re in the mood for and Mesa deals you a hand of spots that are open right now. Swipe right to save, left to pass, and tap a card for the full story.', chips: ['Open now only', 'Undo a swipe', 'Saves to your profile'], name: 'wildcard', label: 'Wildcard' })}
+${feature({ id: 'crawls', eyebrow: 'Crawls', title: 'Turn an afternoon into a <em>crawl.</em>', text: 'Coffee, pastries, tacos, ramen, pints or cocktails. Pick a theme and a vibe, and Mesa plans two to four stops in order, on foot or by car, with the route on a map.', chips: ['2 to 4 stops', 'On foot or by car', '“End with dessert”'], name: 'crawl', label: 'Crawls' })}
 </div>
 
 <div class="values">
-<div class="value"><h2>Picked for how you <em>eat.</em></h2><p>Tell Mesa your allergies and diet and it steers suggestions away from obvious conflicts. It cannot guarantee any dish is allergen-free, so always confirm with the restaurant.</p></div>
-<div class="value"><h2>Real places, <em>real</em> sources.</h2><p>Place details come from Google Maps, dishes and summaries come from public reviews, and press mentions link to the article. You can always see why a spot made the list.</p></div>
-<div class="value"><h2>AI that you <em>control.</em></h2><p>AI picks help rank spots and plan crawls. They’re off until you say yes. Turn them off again anytime in Settings and Mesa ranks with its own scoring. <a href="/privacy/#ai-picks">See what’s shared</a>.</p></div>
+<div class="value"><h2>Picked for how you <em>eat.</em></h2><p>Add your allergies and diet and Mesa steers suggestions away from obvious conflicts. It can’t promise a dish is allergen-free, so always check with the restaurant.</p></div>
+<div class="value"><h2>Real places, <em>real</em> sources.</h2><p>Hours and addresses come from Google Maps. Dishes and summaries come from public reviews, and press mentions link to the article. Tap a match % to see why a spot made the list.</p></div>
+<div class="value"><h2>AI that you <em>control.</em></h2><p>AI picks help rank spots and plan crawls. They stay off until you say yes, and your name, email and exact location are never sent. Turn them off in Settings and Mesa ranks with its own scoring. <a href="/privacy/#ai-picks">See what’s shared</a>.</p></div>
 </div>
 
 <section class="closing">
-<h2>Find your place at the <em>table.</em></h2>
+<h2>Pull up a <em>chair.</em></h2>
+<p class="lede">Mesa is opening up to a few people at a time. Send us a note and we’ll tell you when it’s on the App Store.</p>
 <div class="ctas">
 <span class="soon">Coming soon to the App Store</span>
 <a class="btn-lg" href="mailto:${EMAIL}?subject=Tell%20me%20when%20Mesa%20launches">Get notified at launch</a>
@@ -379,16 +393,26 @@ write('/', page({ path: '/', title: 'Mesa: find your place at the table', descri
 for (const [path, html] of Object.entries(handoffPages)) write(path, html);
 
 let unfilled = 0;
-for (const [name, title, description] of [
+const docs = [
   ['privacy', 'Privacy Policy · Mesa', 'What Mesa collects, why, who it is shared with, and your choices.'],
+  ['terms', 'Terms of Service · Mesa', 'The rules for using Mesa, and what Mesa is and isn’t responsible for.'],
   ['support', 'Help & support · Mesa', 'Get help with Mesa, or delete your account.'],
-]) {
+];
+const docLinks = { privacy: ['/terms/', 'Terms of Service'], terms: ['/privacy/', 'Privacy Policy'], support: ['/privacy/', 'Privacy Policy'] };
+
+// Marks the section in view in the sidebar.
+const tocSpy = `(function(){var l=document.querySelectorAll('.toc a[href^="#"]');if(!l.length||!('IntersectionObserver' in window))return;var m={};l.forEach(function(a){m[a.getAttribute('href').slice(1)]=a});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;l.forEach(function(a){a.removeAttribute('aria-current')});var a=m[e.target.id];if(a)a.setAttribute('aria-current','true')})},{rootMargin:'0px 0px -70% 0px'});Object.keys(m).forEach(function(id){var h=document.getElementById(id);if(h)io.observe(h)})})()`;
+
+for (const [name, title, description] of docs) {
   const src = readFileSync(join(root, 'content', `${name}.md`), 'utf8');
   for (const p of placeholders(src)) {
     unfilled++;
     console.warn(`content/${name}.md: fill in [${p}]`);
   }
-  write(`/${name}/`, page({ path: `/${name}/`, title, description, doc: true, body: markdown(src) + '<a class="back" href="/">← Back to home</a>' }));
+  const { html, toc } = markdown(src);
+  const [altHref, altLabel] = docLinks[name];
+  const aside = `<aside class="toc" aria-label="On this page"><p>On this page</p><ol>${toc.map(([id, label]) => `<li><a href="#${id}">${label}</a></li>`).join('')}</ol><div class="alt">See also: <a href="${altHref}">${altLabel}</a></div></aside>`;
+  write(`/${name}/`, page({ path: `/${name}/`, title, description, body: `<div class="docs">${aside}<article class="doc">${html}<a class="back" href="/">← Back to home</a></article></div><script>${tocSpy}</script>` }));
 }
 
 // GitHub Pages: custom domain, and a 404 that sends people home.
@@ -396,7 +420,7 @@ writeFileSync(join(out, 'CNAME'), 'mesamesa.app\n');
 writeFileSync(join(out, '.nojekyll'), '');
 writeFileSync(
   join(out, '404.html'),
-  page({ path: '/404', title: 'Not found · Mesa', description: 'Page not found.', doc: true, body: '<h1>Nothing at this <em>table.</em></h1><p class="lede">That page doesn\'t exist. <a href="/">Head back home</a>.</p>' }),
+  page({ path: '/404', title: 'Not found · Mesa', description: 'Page not found.', noindex: true, body: '<section class="hero"><h1>Nothing at this <em>table.</em></h1><p class="lede">That page doesn’t exist. <a href="/">Head back home</a>.</p></section>' }),
 );
 
 if (unfilled && strict) {

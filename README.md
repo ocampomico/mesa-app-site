@@ -1,6 +1,6 @@
 # mesa-app-site
 
-The public site at **https://mesamesa.app**: a landing page, the privacy policy, the support page, and the pages that email links open before they hand off to the app.
+The public site at **https://mesamesa.app**: a landing page, the privacy policy, the terms of service, the support page, and the pages that email links open before they hand off to the app.
 
 Plain static HTML, built by one Node script with no dependencies.
 
@@ -18,11 +18,12 @@ Needs Node 22 or newer.
 |---|---|---|
 | `/` | `build.mjs` | Landing page. A screen with no screenshot in `static/shots/` is left off, along with its feature section. |
 | `/privacy/` | `content/privacy.md` | The privacy policy. This is the source of truth for the policy. |
+| `/terms/` | `content/terms.md` | Terms of service. |
 | `/support/` | `content/support.md` | Help, contact, and how to delete an account. |
 | `/auth/confirm/` | `build.mjs` | Where the sign-up confirmation email lands. Opens the app. |
 | `/auth/reset/` | `build.mjs` | Where the password reset email lands. Opens the app. |
 
-`content/*.md` supports headings, paragraphs, lists, tables, links, bold and italic. Anything in `[square brackets]` that isn't a link counts as a placeholder.
+`content/*.md` supports headings, paragraphs, lists, tables, links, bold and italic. Each `##` heading becomes an entry in the page's "On this page" sidebar. Anything in `[square brackets]` that isn't a link counts as a placeholder.
 
 ## Email link pages
 
@@ -35,7 +36,7 @@ The pages forward only `code`, `error`, `error_code` and `error_description`, an
 | Path | What |
 |---|---|
 | `build.mjs` | Layout, styles, landing page, email link pages, and a small Markdown converter. |
-| `content/` | Privacy policy and support page. |
+| `content/` | Privacy policy, terms of service and support page. |
 | `static/` | Logo, icons and screenshots, copied as they are. Screenshots should use a generic profile with no real names or emails. |
 | `.github/workflows/pages.yml` | Builds with `--strict` and publishes to GitHub Pages on every push to `main`. |
 
@@ -56,7 +57,7 @@ Any static host works instead: build with `node build.mjs --strict` and serve `d
 
 ## When the policy changes
 
-Edit `content/privacy.md`, update its effective date, and push. If the change is about what the app collects or shares, update the App Privacy answers in App Store Connect too.
+Edit `content/privacy.md` (or `content/terms.md`), update its effective date, and push. If the change is about what the app collects or shares, update the App Privacy answers in App Store Connect too.
 
 ## Contact
 
