@@ -3,7 +3,8 @@
 //   node build.mjs            build; warn about unfilled [placeholders]
 //   node build.mjs --strict   same, but fail if any remain (used by the deploy)
 //
-// Pages: / (landing), /privacy/ and /support/ (from content/*.md).
+// Pages: / (landing), /privacy/ and /support/ (from content/*.md), and
+// /auth/confirm/ and /auth/reset/ (where email links land, then open the app).
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -77,8 +78,8 @@ const placeholders = (src) => [...src.matchAll(/\[([^\]]+)\](?!\()/g)].map((m) =
 
 // --- layout ---
 
-// Same look as the app (mesa-app-ui/src/theme/tokens.ts): Inter Tight in four
-// weights, a neutral base, and Ember as the one color. Keep the two in step.
+// Same look as the app: Inter Tight in four weights, a neutral base, and
+// Ember as the one color. Keep the two in step.
 const css = `
 :root{--bg:#FAFAFA;--surface:#FFFFFF;--soft:#F3F3F3;--text:#111111;--muted:rgba(17,17,17,.74);--faint:rgba(17,17,17,.6);--line:rgba(17,17,17,.08);--ember:#B84C24;--ember-hover:#9C3F1C;--on-ember:#FFFFFF;--accent:#B84C24;--shadow:0 18px 40px -22px rgba(17,17,17,.3);color-scheme:light;--sans:"Inter Tight",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#111111;--surface:#1B1B1B;--soft:rgba(250,250,250,.08);--text:#FAFAFA;--muted:rgba(250,250,250,.7);--faint:rgba(250,250,250,.55);--line:rgba(250,250,250,.1);--on-ember:#FAFAFA;--accent:#F0A98A;--shadow:none;color-scheme:dark}}
@@ -152,6 +153,10 @@ tr:last-child td{border-bottom:0}
 .closing h2{border:0;margin:0 auto 24px;padding:0;font-size:clamp(30px,5vw,44px);font-weight:800;line-height:1.08;letter-spacing:-.03em;max-width:12em}
 footer{border-top:1px solid var(--line);padding:24px 0 48px;color:var(--faint);font:400 14px var(--sans);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
 footer a,footer em{color:var(--faint)}
+[hidden]{display:none!important}
+.handoff{padding-bottom:24px}
+.handoff .ctas{margin-top:8px}
+.fine{color:var(--faint);font-size:14px;line-height:1.5;max-width:30em;margin:22px auto 0}
 `;
 
 // Light/dark switch. With no saved choice the site follows the device; the
@@ -161,7 +166,7 @@ const themeInit = `try{var t=localStorage.getItem('theme');if(t==='light'||t==='
 const themeToggle = `(function(){var b=document.getElementById('theme');if(!b)return;var m=matchMedia('(prefers-color-scheme:dark)');function cur(){return document.documentElement.dataset.theme||(m.matches?'dark':'light')}function sync(){b.setAttribute('aria-label',cur()==='dark'?'Switch to light mode':'Switch to dark mode')}b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';document.documentElement.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync()});m.addEventListener('change',sync);sync()})()`;
 const themeButton = `<button class="theme" id="theme" type="button" aria-label="Switch to dark mode"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>`;
 
-function page({ path, title, description, body, doc = false }) {
+function page({ path, title, description, body, doc = false, noindex = false }) {
   const nav =
     [
       ['/#features', 'Features'],
@@ -177,7 +182,7 @@ function page({ path, title, description, body, doc = false }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
-<link rel="canonical" href="${SITE}${path}">
+${noindex ? '<meta name="robots" content="noindex">\n' : ''}<link rel="canonical" href="${SITE}${path}">
 <link rel="icon" href="/mark.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="64x64">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -282,6 +287,81 @@ ${feature({ id: 'crawls', eyebrow: 'Crawls', title: 'Turn an afternoon into a <e
 </section>
 `;
 
+// --- email link landing pages ---
+//
+// Confirmation and password-reset emails open in a browser, and Gmail and
+// others wrap the link in their own redirect, which can't hand off to a
+// custom scheme. So the emails point here, and this page passes the sign-in
+// code on to the app with a button (and automatically on a phone). The code
+// is single use and only the phone that asked for it can finish the sign-in,
+// so the page never handles a session itself.
+const APP_LINK_KEYS = ['code', 'error', 'error_code', 'error_description'];
+
+function handoff({ path, title, deepLink, ok, expired }) {
+  const script = `(function(){
+var q=new URLSearchParams(location.search),h=new URLSearchParams(location.hash.slice(1)),out=new URLSearchParams();
+${JSON.stringify(APP_LINK_KEYS)}.forEach(function(k){var v=q.get(k)||h.get(k);if(v)out.set(k,v)});
+var bad=out.has('error')||out.has('error_description');
+var s=out.toString(),link=${JSON.stringify(deepLink)}+(s?'?'+s:'');
+document.getElementById('open').href=link;
+document.getElementById('ok').hidden=bad;
+document.getElementById('bad').hidden=!bad;
+if(!bad&&/iPhone|iPad|Android/i.test(navigator.userAgent))setTimeout(function(){location.href=link},400);
+})()`;
+  const body = `
+<section class="hero handoff">
+<div id="ok">
+<h1>${ok.title}</h1>
+<p class="lede">${ok.text}</p>
+</div>
+<div id="bad" hidden>
+<h1>${expired.title}</h1>
+<p class="lede">${expired.text}</p>
+</div>
+<div class="ctas"><a class="btn-lg" id="open" href="${deepLink}">Open Mesa</a></div>
+<p class="fine">${ok.fine}</p>
+</section>
+<script>${script}</script>`;
+  return page({
+    path,
+    title,
+    description: 'Open Mesa to finish.',
+    noindex: true,
+    body,
+  });
+}
+
+const handoffPages = {
+  '/auth/confirm/': handoff({
+    path: '/auth/confirm/',
+    title: 'Email confirmed · Mesa',
+    deepLink: 'mesa://auth/callback',
+    ok: {
+      title: 'Email <em>confirmed.</em>',
+      text: 'Your account is ready. Open Mesa to keep going.',
+      fine: 'On a computer? There’s nothing more to do here. Open Mesa on your phone and sign in.',
+    },
+    expired: {
+      title: 'That link has <em>expired.</em>',
+      text: 'Confirmation links work once, and they run out after a while. Open Mesa and try signing in. It will offer to send you a new one.',
+    },
+  }),
+  '/auth/reset/': handoff({
+    path: '/auth/reset/',
+    title: 'Reset your password · Mesa',
+    deepLink: 'mesa://reset-password',
+    ok: {
+      title: 'Choose a new <em>password.</em>',
+      text: 'Open Mesa on your phone to set it.',
+      fine: 'Opened this on a computer? Open the email again on the phone that has Mesa.',
+    },
+    expired: {
+      title: 'That link has <em>expired.</em>',
+      text: 'Reset links work once. In Mesa, tap “Forgot password?” to get a new one.',
+    },
+  }),
+};
+
 // --- build ---
 
 rmSync(out, { recursive: true, force: true });
@@ -295,6 +375,8 @@ const write = (path, html) => {
 };
 
 write('/', page({ path: '/', title: 'Mesa: find your place at the table', description: 'Food and drink spots picked for how you like to eat, and crawls planned around your mood.', body: landing }));
+
+for (const [path, html] of Object.entries(handoffPages)) write(path, html);
 
 let unfilled = 0;
 for (const [name, title, description] of [

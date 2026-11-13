@@ -12,7 +12,7 @@ Yes. Everything Mesa shows is ranked for your taste, and your saved spots, crawl
 
 ### I didn't get the confirmation or password email
 
-Check spam, then try again from the sign-in screen: "Forgot password?" sends a new reset link, and signing in with an unconfirmed email offers to resend the confirmation. Open the link on the phone that has Mesa and it drops you straight in.
+Check spam, then try again from the sign-in screen: "Forgot password?" sends a new reset link, and signing in with an unconfirmed email offers to resend the confirmation. Open the link on the phone that has Mesa and tap "Open Mesa" on the page that appears. If you open it on a computer, your email is still confirmed. Just sign in on your phone.
 
 ### Mesa can't find my location
 
