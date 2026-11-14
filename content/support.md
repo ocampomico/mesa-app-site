@@ -95,9 +95,17 @@ Tap the undo button under the deck to bring back the last card. Spots you pass o
 
 Open the Crawl tab. Pick a theme, add a vibe or two if you like, choose walking or driving, how far and how many stops (two to four), then tap "Plan my crawl". Use "Anything else?" for requests like "end with dessert".
 
+### Can I pick the stops myself?
+
+Yes. On the Crawl tab, tap "Make your own". Give it a title, add 2 to 8 places from search or your saved spots, and put them in the order you want. You can also add a place from its page with the crawl button at the top. Mesa works out the walking or driving time between stops and tells you if a place will be closed when you'd get there. "Best order" finds the shortest route.
+
+### Can I change a crawl after it's saved?
+
+Open it and tap the edit button at the top. You can add, remove and reorder stops, add notes, or change the start, on crawls you made and on ones Mesa planned. A finished crawl can't be edited.
+
 ### Where did my crawl go?
 
-A crawl you plan but don't save is kept for 7 days. Save it and it stays on your profile under Crawls.
+A crawl Mesa plans that you don't save is kept for 7 days. A crawl you make yourself is saved when you tap "Save crawl". Save it and it stays on your profile under Crawls.
 
 ### What does finishing a crawl do?
 
@@ -115,7 +123,7 @@ Save it to keep it on your profile, tap "I'm in" to let them know you're coming,
 
 ### How do I add a friend?
 
-Profile → Friends. Type their handle and send a request; you're friends once they accept. If you invite someone to Mesa with one of your invite codes, you're friends as soon as they use it.
+Profile → Friends. Type their handle and tap Find to open their page, then "Add friend". You're friends once they accept. If you invite someone to Mesa with one of your invite codes, you're friends as soon as they use it.
 
 ### Where are my invite codes?
 
@@ -127,7 +135,7 @@ Your name, handle and photo, plus any crawl or list you set to Friends or Anyone
 
 ### How do I remove a friend?
 
-Profile → Friends, tap the person, then "Remove friend". They aren't told.
+Tap their photo on your Profile (or Profile → Friends and their name), then "Remove friend". They aren't told.
 
 ### How do I block someone?
 

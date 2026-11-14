@@ -31,6 +31,7 @@ The rest of this page is the detail behind each of those.
 | Activity | Spots and crawls you save, crawls you complete, distance walked on crawls | Your profile, stats and better picks |
 | Browsing signals | Which spots you open and which you swipe away in Wildcard (how often and when last, not where you were) | Better picks; kept 90 days |
 | Searches and crawl requests | What you type into search or "Anything else?" | Answering the request |
+| Crawls you make | The title, description, notes, stops, start point and leaving time of a crawl you build yourself | Your crawls, and sharing them if you choose to |
 | Usage counts | How many requests your account made each day (a number, not what you did) | Knowing how many people use Mesa; kept 90 days |
 
 We do **not** collect contacts, payment information or advertising identifiers, and we collect no health information other than the allergies and diet you choose to add. We do not track you across other apps or websites, show ads, or sell your data.
@@ -69,13 +70,13 @@ Mesa has no public profiles and no public feed. Other people see something of yo
 - **Your name, handle and photo** are shown to someone who looks up your exact handle, to your friends, to people who open a crawl or list you shared, and to people on a list you edit together. Your email, home city, taste, allergies, saved spots and location are never shown to anyone.
 - **Friends** are people whose request you accepted or who accepted yours, and people who joined with one of your invite codes (or whose code you used). Either of you can end it at any time.
 - **Crawls and lists are private** until you change that. "Friends" lets your friends see one. "Anyone with the link" also lets anyone you send the link to see it, including on a web page at mesamesa.app that shows the title, your name, and the names and addresses of the places. That page has no account behind it, so treat the link like the thing itself: anyone it's forwarded to can open it.
-- **A shared crawl** shows its stops, route and times. It doesn't show where you started unless you turn that on, what you typed when planning it, or whether you finished it. If someone taps "I'm in", you see their name; other viewers see it only if they're friends with that person.
+- **A shared crawl** shows its stops, route and times, plus the title, description and notes if you wrote any. It doesn't show where you started unless you turn that on, what you typed when planning it, or whether you finished it. If someone taps "I'm in", you see their name; other viewers see it only if they're friends with that person.
 - **A shared list** shows its places and, to you and the friends who edit it, who added each one.
 - **Blocking** someone hides you from each other everywhere in Mesa and ends the friendship. They aren't told. **Reports** go to us, and we don't tell the other person who sent one.
 
 Shares hold only which places are in them. The names, photos and hours you see come fresh from Google each time one is opened.
 
-Nothing in this section is sent to Anthropic or any other AI provider: not your friends, your lists, what you share, or what others share with you.
+Nothing in this section is sent to Anthropic or any other AI provider: not your friends, your lists, what you share, or what others share with you. The same goes for crawls you make yourself: their titles, descriptions and notes never go to AI.
 
 ## Allergies and diet
 
