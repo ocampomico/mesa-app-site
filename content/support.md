@@ -169,6 +169,10 @@ The owner made it private or deleted it, or it's shared with friends only and yo
 
 Profile → Spots, grouped by city. The map button shows them all as pins. Tap the heart again on any spot to remove it.
 
+### How do I share my profile?
+
+Profile → Share profile. A friend next to you can scan the code with their phone camera, or tap "Send" or "Copy link" to send it. The link opens your page in Mesa for anyone signed in. They see your name, photo and counts, and can add you as a friend from there.
+
 ### How do I change my name, handle or photo?
 
 Profile → Edit profile. Handles are 3 to 30 characters: letters, numbers, dots and underscores.

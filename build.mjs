@@ -408,6 +408,7 @@ var $=function(id){return document.getElementById(id)};
 function fail(){$('loading').hidden=true;$('gone').hidden=false}
 if(!/^[A-Za-z0-9]{10,32}$/.test(t)){fail();return}
 fetch(${JSON.stringify(API)}+'/api/v1/public/share/'+t).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+if(d.kind==='user'){$('loading').hidden=true;$('profile').hidden=false;return}
 var places=d.places||[],n=places.length+(d.morePlaces||0);
 $('kind').textContent=d.kind==='crawl'?'A crawl on Mesa':d.kind==='list'?'A list on Mesa':'A place on Mesa';
 $('title').textContent=d.title||'Shared on Mesa';
@@ -438,7 +439,7 @@ $('loading').hidden=true;$('shared').hidden=false;
 const sharePage = page({
   path: '/s/',
   title: 'Shared on Mesa',
-  description: 'Someone shared a place, a crawl or a list with you on Mesa.',
+  description: 'Someone shared a place, a crawl, a list or their profile with you on Mesa.',
   noindex: true,
   body: `
 <section class="hero handoff">
@@ -446,6 +447,11 @@ const sharePage = page({
 <div id="gone" hidden>
 <h1>This link isn’t <em>available.</em></h1>
 <p class="lede">It may have been made private or removed. If a friend sent it, ask them to check how it’s shared.</p>
+</div>
+<div id="profile" hidden>
+<h1>A profile <em>on Mesa.</em></h1>
+<p class="lede">Profiles open in the app, for people signed in to Mesa. Open this link on the phone that has Mesa, or get the app first.</p>
+<div class="ctas"><a class="btn-lg" href="/#join">Get Mesa</a></div>
 </div>
 <div id="shared" class="shared" hidden>
 <span class="eyebrow" id="kind"></span>
