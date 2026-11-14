@@ -10,7 +10,7 @@ Mesa ("we", "us"), based in California, helps you find food and drink spots and 
 - We don't sell your data, show ads, or track you across other apps and websites.
 - AI picks are off until you turn them on. With them on, your preferences, a summary of what you save and your searches go to Anthropic. Your name, email, photo and GPS coordinates never do.
 - Location is used only while the app is open, and we don't keep a history of where you've been.
-- Nothing you make is shared with other people until you choose to share it. Friends see your name, handle and photo, and nothing about friends or sharing goes to AI.
+- Nothing you make is shared with other people until you choose to share it. Friends see your name, username, photo and bio, and nothing about friends or sharing goes to AI.
 - You can delete your account, and everything in it, from inside the app.
 
 The rest of this page is the detail behind each of those.
@@ -19,7 +19,7 @@ The rest of this page is the detail behind each of those.
 
 | Data | Examples | Why |
 |---|---|---|
-| Account details | Email, name, handle, home city, profile photo (if you add one) | Sign-in and your profile |
+| Account details | Email, name, username, bio, home city, profile photo (if you add one) | Sign-in and your profile |
 | Sign-in data | A user ID from Apple or Google if you sign in with them | Sign-in |
 | Invite status | Whether your account is on the waitlist or let in, the invite code you used and when, and the invite codes you can give out | Opening Mesa to a few people at a time |
 | Friends | Who your friends are, friend requests you send or get, and people you block | Sharing with friends, and keeping people away from you if you ask |
@@ -67,7 +67,8 @@ If you add a photo, it's shrunk on your phone and stored with our database provi
 
 Mesa has no public profiles and no public feed. Other people see something of yours only in these cases:
 
-- **Your name, handle and photo** are shown to someone who looks up your exact handle, to your friends, to people who open a crawl or list you shared or your profile link, and to people on a list you edit together. Your email, home city, taste, allergies, location and which spots you saved are never shown to anyone.
+- **Your name, username and photo** are shown to someone who looks up your exact username, to your friends, to people who open a crawl or list you shared or your profile link, and to people on a list you edit together. Your email, home city, taste, allergies, location and which spots you saved are never shown to anyone.
+- **Your bio**, if you write one, shows on your page to anyone signed in to Mesa who reaches it.
 - **Your profile counts** (how many spots you've saved, in how many cities, how many crawls you've finished, and how many friends you have) show on your page to anyone signed in to Mesa who reaches it. Only the numbers, never the spots or the friends themselves.
 - **Your profile link** (Profile → Share profile) opens your page in the app for anyone signed in to Mesa. Opened without the app, the web page only says to get Mesa and shows nothing about you.
 - **Friends** are people whose request you accepted or who accepted yours, and people who joined with one of your invite codes (or whose code you used). Either of you can end it at any time.
@@ -96,7 +97,7 @@ With AI picks **on**, we send Anthropic:
 - the mood you pick, the part of the day and the day of the week;
 - the nearby places being ranked, with the walking and driving time to each.
 
-We **never** send your name, email, handle, photo, GPS coordinates, which spots you opened or swiped away, or anything about your friends, lists or what you share.
+We **never** send your name, email, username, bio, photo, GPS coordinates, which spots you opened or swiped away, or anything about your friends, lists or what you share.
 
 With AI picks **off**, Mesa ranks with its own scoring and sends none of the above to Anthropic. The app keeps working; picks are just less tailored.
 

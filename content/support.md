@@ -123,7 +123,7 @@ Save it to keep it on your profile, tap "I'm in" to let them know you're coming,
 
 ### How do I add a friend?
 
-Profile → Friends. Type their handle and tap Find to open their page, then "Add friend". You're friends once they accept. If you invite someone to Mesa with one of your invite codes, you're friends as soon as they use it.
+Profile → Friends. Type their username and tap Find to open their page, then "Add friend". You're friends once they accept. If you invite someone to Mesa with one of your invite codes, you're friends as soon as they use it.
 
 ### Where are my invite codes?
 
@@ -131,7 +131,7 @@ Profile → Friends → Your invite codes, while Mesa is invite-only. Each code 
 
 ### What can my friends see?
 
-Your name, handle and photo, plus any crawl or list you set to Friends or Anyone with the link. Nothing else: not your saved spots, your taste, your allergies or where you are.
+Your name, username, photo and bio, your profile counts (spots saved, cities, crawls done, friends), plus any crawl or list you set to Friends or Anyone with the link. Nothing else: not which spots you saved, your taste, your allergies or where you are.
 
 ### How do I remove a friend?
 
@@ -173,9 +173,9 @@ Profile → Spots, grouped by city. The map button shows them all as pins. Tap t
 
 Profile → Share profile. A friend next to you can scan the code with their phone camera, or tap "Send" or "Copy link" to send it. The link opens your page in Mesa for anyone signed in. They see your name, photo and counts, and can add you as a friend from there.
 
-### How do I change my name, handle or photo?
+### How do I change my name, username, bio or photo?
 
-Profile → Edit profile. Handles are 3 to 30 characters: letters, numbers, dots and underscores.
+Profile → Edit profile. Usernames are 3 to 30 characters: letters, numbers, dots and underscores. A bio can be up to 150 characters over 4 lines.
 
 ### Can I use dark mode?
 

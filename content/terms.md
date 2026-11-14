@@ -24,8 +24,8 @@ Mesa is invite-only for now. You can create an account without an invite code, b
 ## Your account
 
 - Give accurate details when you sign up, and keep your password to yourself. You're responsible for what happens under your account.
-- One account per person. Don't sign up as someone else or pick a handle that pretends to be someone else.
-- We may change a handle or remove a profile photo that's offensive, misleading or infringes someone's rights.
+- One account per person. Don't sign up as someone else or pick a username that pretends to be someone else.
+- We may change a username, clear a bio or remove a profile photo that's offensive, misleading or infringes someone's rights.
 - If you think someone else is using your account, email us right away.
 
 ## What Mesa is, and what it isn't
@@ -63,7 +63,7 @@ Don't:
 - reverse engineer the app or our server, except where the law allows it;
 - interfere with Mesa or put an unreasonable load on it;
 - upload a photo you don't have the right to use, or anything unlawful, sexual or hateful;
-- put anything hateful, sexual, threatening or misleading in a name, handle, list or anything else other people can see;
+- put anything hateful, sexual, threatening or misleading in a name, username, bio, list or anything else other people can see;
 - pretend to be someone else, or send friend requests or links to people who've made clear they don't want them;
 - use Mesa to break the law or to harass anyone.
 
@@ -74,12 +74,12 @@ Mesa lets you add friends and share crawls and lists with them or by link. There
 - You decide who sees what. Crawls and lists are private until you share them, and you can make them private again.
 - You're responsible for what you share and who you send links to. Anyone with a link set to "Anyone with the link" can open it.
 - You can **block** anyone, which hides you from each other and ends the friendship, and you can **report** a person, a crawl or a list from the screen it's on. We review reports within 24 hours, and remove content and close accounts that break these terms.
-- Names, handles and list titles pass an automatic word filter. It won't catch everything, which is what reports are for.
+- Names, usernames, bios and list titles pass an automatic word filter. It won't catch everything, which is what reports are for.
 - A friend's crawl or list is their suggestion, not ours. Check details yourself before you go.
 
 ## Your content
 
-Your profile photo, name, handle, preferences, lists and anything you type into Mesa stay yours. You give us permission to store, process and display them only as needed to run Mesa for you, which includes showing what you share to the people you share it with. That includes sending them to the service providers named in the [privacy policy](/privacy/#who-we-share-data-with): Supabase for storage, Amazon Web Services for hosting, Google for maps and place search, and Anthropic for AI picks if you turn them on. We don't sell your content or use it to train AI models.
+Your profile photo, name, username, bio, preferences, lists and anything you type into Mesa stay yours. You give us permission to store, process and display them only as needed to run Mesa for you, which includes showing what you share to the people you share it with. That includes sending them to the service providers named in the [privacy policy](/privacy/#who-we-share-data-with): Supabase for storage, Amazon Web Services for hosting, Google for maps and place search, and Anthropic for AI picks if you turn them on. We don't sell your content or use it to train AI models.
 
 We may use totals that don't identify anyone, such as how many searches Mesa ran in a day, to run and improve Mesa.
 
@@ -97,7 +97,7 @@ If you think something on Mesa infringes your copyright, email [support@mesamesa
 
 - your name and how to reach you;
 - the work you think is being infringed;
-- where it appears in Mesa (for example, the handle of the profile or the name of the place);
+- where it appears in Mesa (for example, the username of the profile or the name of the place);
 - a statement that you believe in good faith the use isn't authorized, and that your notice is accurate;
 - your physical or electronic signature, and, if you're acting for the owner, a statement that you're authorized to.
 
