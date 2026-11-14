@@ -34,7 +34,7 @@ Mesa ranks places using what you tell it, information from Google Maps, public r
 
 - **Information can be wrong.** Hours, prices, menus and whether a place is open come from third parties and can lag behind real life. Check with the place before you go.
 - **Places are independent.** Mesa isn't affiliated with the places it shows and isn't responsible for their food, service, prices or premises.
-- **Routes are estimates.** Walking and driving times and crawl routes are approximate. Follow local laws, road signs and your own judgment, and pay attention to where you're going.
+- **Routes are estimates.** Walking and driving times and crawl routes are approximate. Directions you open in Apple Maps or Google Maps come from those apps, under their own terms. Follow local laws, road signs and your own judgment, and pay attention to where you're going.
 
 ## No paid rankings
 
@@ -63,7 +63,7 @@ Don't:
 - reverse engineer the app or our server, except where the law allows it;
 - interfere with Mesa or put an unreasonable load on it;
 - upload a photo you don't have the right to use, or anything unlawful, sexual or hateful;
-- put anything hateful, sexual, threatening or misleading in a name, username, bio, list or anything else other people can see;
+- put anything hateful, sexual, threatening or misleading in a name, username, bio, list, crawl or anything else other people can see;
 - pretend to be someone else, or send friend requests or links to people who've made clear they don't want them;
 - use Mesa to break the law or to harass anyone.
 
@@ -74,12 +74,12 @@ Mesa lets you add friends and share crawls and lists with them or by link. There
 - You decide who sees what. Crawls and lists are private until you share them, and you can make them private again.
 - You're responsible for what you share and who you send links to. Anyone with a link set to "Anyone with the link" can open it.
 - You can **block** anyone, which hides you from each other and ends the friendship, and you can **report** a person, a crawl or a list from the screen it's on. We review reports within 24 hours, and remove content and close accounts that break these terms.
-- Names, usernames, bios and list titles pass an automatic word filter. It won't catch everything, which is what reports are for.
+- Names, usernames, bios, list names and descriptions, and crawl titles, descriptions and notes pass an automatic word filter. It won't catch everything, which is what reports are for.
 - A friend's crawl or list is their suggestion, not ours. Check details yourself before you go.
 
 ## Your content
 
-Your profile photo, name, username, bio, preferences, lists and anything you type into Mesa stay yours. You give us permission to store, process and display them only as needed to run Mesa for you, which includes showing what you share to the people you share it with. That includes sending them to the service providers named in the [privacy policy](/privacy/#who-we-share-data-with): Supabase for storage, Amazon Web Services for hosting, Google for maps and place search, and Anthropic for AI picks if you turn them on. We don't sell your content or use it to train AI models.
+Your profile photo, name, username, bio, preferences, lists, the crawls you make and anything you type into Mesa stay yours. You give us permission to store, process and display them only as needed to run Mesa for you, which includes showing what you share to the people you share it with. That includes sending them to the service providers named in the [privacy policy](/privacy/#who-we-share-data-with): Supabase for storage, Amazon Web Services for hosting, Google for maps and place search, and Anthropic for AI picks if you turn them on. We don't sell your content or use it to train AI models.
 
 We may use totals that don't identify anyone, such as how many searches Mesa ran in a day, to run and improve Mesa.
 

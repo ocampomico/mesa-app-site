@@ -279,7 +279,7 @@ ${frame}
 const landing = `
 <section class="hero">
 <h1>Find your place at the <em>table.</em></h1>
-<p class="lede">Mesa finds food and drink spots worth your time. From food crawls to date night, explore it all.</p>
+<p class="lede">Mesa finds food and drink spots worth your time. From food crawls to date night with friends, explore it all.</p>
 <div class="ctas" id="join">
 <span class="soon">Coming soon to the App Store</span>
 <a class="btn-lg" href="mailto:${EMAIL}?subject=Tell%20me%20when%20Mesa%20launches">Get notified at launch</a>
@@ -291,16 +291,21 @@ ${shot('explore', 'Explore')}
 ${shot('place', 'Place page')}
 ${shot('wildcard', 'Wildcard')}
 ${shot('crawl', 'Crawls')}
-${shot('saved', 'Saved')}
+${shot('crawl-shared', 'A shared crawl')}
+${shot('list', 'A shared list')}
+${shot('profile', 'Profile')}
 </div>
 
 <p class="rule"><strong>Ranked by your</strong><span>Vibe</span><span>Budget</span><span>Cuisines</span><span>Allergies &amp; diet</span><span>Walk or drive</span></p>
 
 <div id="features">
 ${feature({ id: 'explore', eyebrow: 'Explore', title: 'Spots near you, ranked for <em>you.</em>', text: 'Set your vibe, budget, cuisine, and how far you’re willing to walk or drive. Mesa ranks what’s near you based on your needs.', chips: ['Match %', 'Open now', 'Hidden Gem', 'Local Favorite'], name: 'explore', label: 'Explore' })}
-${feature({ id: 'order', eyebrow: 'Spots', title: 'Know what to <em>order.</em>', text: 'See what the crowd favorites are and what’s notable on the menu before you walk in.', chips: ['Crowd favorites', 'The word on the street', 'As seen in'], name: 'place', label: 'Place page' })}
-${feature({ id: 'wildcard', eyebrow: 'Wildcard', title: "Can’t decide? Just <em>swipe.</em>", text: 'Endless options at your fingertips. Swipe right to save or left to pass, and keep exploring.', chips: ['Open now only', 'Undo a swipe', 'Saves to your profile'], name: 'wildcard', label: 'Wildcard' })}
-${feature({ id: 'crawls', eyebrow: 'Crawls', title: 'Turn an afternoon into a <em>crawl.</em>', text: 'Pick a theme and vibe, and let Mesa plan the rest.', chips: ['2 to 4 stops', 'On foot or by car', '“End with dessert”'], name: 'crawl', label: 'Crawls' })}
+${feature({ id: 'order', eyebrow: 'Spots', title: 'Know what to <em>order.</em>', text: 'See the crowd favorites and what’s notable on the menu before you walk in. Like it? Save it, add it to a list or drop it into a crawl.', chips: ['Crowd favorites', 'The word on the street', 'As seen in'], name: 'place', label: 'Place page' })}
+${feature({ id: 'wildcard', eyebrow: 'Wildcard', title: "Can’t decide? Just <em>swipe.</em>", text: 'Pick a mood and Mesa deals you a hand of spots that are open now. Swipe right to save or left to pass, and keep going.', chips: ['Open now only', 'Undo a swipe', 'Saves to your profile'], name: 'wildcard', label: 'Wildcard' })}
+${feature({ id: 'crawls', eyebrow: 'Crawls', title: 'Turn an afternoon into a <em>crawl.</em>', text: 'Pick a theme and a vibe and Mesa plans the route. Already know where you want to go? Pick the stops yourself and Mesa can put them in the best order, with the walk between each one.', chips: ['Planned for you', 'Or make your own', 'On foot or by car', 'Open in Maps'], name: 'crawl', label: 'Crawls' })}
+${feature({ id: 'friends', eyebrow: 'Friends', title: 'Plan it with your <em>people.</em>', text: 'Add friends by username or QR code and share a crawl with them. They tap “I’m in”, and you can see who’s coming before you head out.', chips: ['Friends only or anyone with the link', '“I’m in”', 'Start point hidden by default'], name: 'crawl-shared', label: 'A shared crawl' })}
+${feature({ id: 'lists', eyebrow: 'Lists', title: 'Lists you build <em>together.</em>', text: 'Date night spots, where to take visitors, the best slice in town. Make a list, choose who can add to it, and see who added what.', chips: ['Edit with friends', 'Private, friends or link', 'Added by'], name: 'list', label: 'A shared list' })}
+${feature({ id: 'profile', eyebrow: 'Profile', title: 'Everywhere you’ve saved, in one <em>place.</em>', text: 'Your saved spots by city, the crawls you’ve done and your lists. Send your profile as a link or show the QR code, and friends can add you in a tap.', chips: ['Spots by city', 'Crawls done', 'Share with a QR code'], name: 'profile', label: 'Profile' })}
 </div>
 
 <div class="values">
@@ -480,7 +485,7 @@ const write = (path, html) => {
   writeFileSync(file, html);
 };
 
-write('/', page({ path: '/', title: 'Mesa: find your place at the table', description: 'Food and drink spots picked for how you like to eat, and crawls planned around your mood.', body: landing }));
+write('/', page({ path: '/', title: 'Mesa: find your place at the table', description: 'Food and drink spots picked for how you like to eat, crawls planned around your mood, and lists you share with friends.', body: landing }));
 
 for (const [path, html] of Object.entries(handoffPages)) write(path, html);
 write('/s/', sharePage);

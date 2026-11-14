@@ -127,7 +127,7 @@ We share data only with service providers that run Mesa for us:
 - **Anthropic and Google Gemini (AI), public place data only**, as described above.
 - **Apple / Google sign-in**, if you choose them.
 
-Some things leave Mesa only because you ask them to: tapping "Take me there" opens your maps app with the spot's location, sharing a spot, crawl, list or invite code goes through your phone's share sheet, and press links open in your browser.
+Some things leave Mesa only because you ask them to: "Take me there" and "Open route in Maps" open Apple Maps or Google Maps (you pick) with the names and addresses of the spot or the crawl's stops, sharing a spot, crawl, list or invite code goes through your phone's share sheet, and press links open in your browser.
 
 Other people on Mesa see what you share with them, as described under [Friends and sharing](#friends-and-sharing).
 
