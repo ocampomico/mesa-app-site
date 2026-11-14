@@ -103,11 +103,63 @@ A crawl you plan but don't save is kept for 7 days. Save it and it stays on your
 
 Tap "We crushed this crawl" when you're done. It's added to your stats, along with the distance if you walked it.
 
+### Can I share a crawl?
+
+Open the crawl and tap the share button at the top. Pick Friends or Anyone with the link, then "Send the link". Other people see the stops, route and times. They don't see where you started unless you turn on "Show where it starts".
+
+### Someone shared a crawl with me. What can I do with it?
+
+Save it to keep it on your profile, tap "I'm in" to let them know you're coming, or "Copy to my crawls" to get your own copy. The copy is yours alone and they won't see it.
+
+## Friends
+
+### How do I add a friend?
+
+Profile → Friends. Type their handle and send a request; you're friends once they accept. If you invite someone to Mesa with one of your invite codes, you're friends as soon as they use it.
+
+### Where are my invite codes?
+
+Profile → Friends → Your invite codes, while Mesa is invite-only. Each code lets one person in. Tap "Send" to share one.
+
+### What can my friends see?
+
+Your name, handle and photo, plus any crawl or list you set to Friends or Anyone with the link. Nothing else: not your saved spots, your taste, your allergies or where you are.
+
+### How do I remove a friend?
+
+Profile → Friends, tap the person, then "Remove friend". They aren't told.
+
+### How do I block someone?
+
+Open their page (tap their name anywhere you see it) and tap "Block". They can't find you, send you requests or see anything you share, and you won't see theirs. They aren't told. To undo it: Settings → Blocked people.
+
+### How do I report someone or something?
+
+Tap "Report" on the person's page, or on the crawl or list. Pick a reason and add anything we should know. We look at every report within 24 hours, and the other person isn't told it was you. You can also email [support@mesamesa.app](mailto:support@mesamesa.app).
+
+## Lists
+
+### What's a list?
+
+A named group of places, like "Date night" or "Birthday dinner options". Make one in Profile → Lists, or from any place: tap the list button at the top of its page.
+
+### Can friends add to my list?
+
+Yes. Open the list, tap "Who can edit" and add friends. They can add and remove places; only you can rename, share or delete the list. The list shows who added each place.
+
+### Who can see my list?
+
+Only you and the friends you added, until you share it. Open the list, tap the share button and pick Friends or Anyone with the link.
+
+### I opened a shared link and it says it isn't available
+
+The owner made it private or deleted it, or it's shared with friends only and you aren't friends on Mesa. Ask whoever sent it.
+
 ## Saved spots and your profile
 
 ### Where are my saved spots?
 
-Profile → Saved spots, grouped by city. The map button shows them all as pins. Tap the heart again on any spot to remove it.
+Profile → Spots, grouped by city. The map button shows them all as pins. Tap the heart again on any spot to remove it.
 
 ### How do I change my name, handle or photo?
 
@@ -119,6 +171,6 @@ Yes. Profile → Settings → Appearance. "System" follows your phone.
 
 ## Delete your account
 
-In the app: Profile → Settings → Delete account. This permanently deletes your profile, photo, preferences, saved spots, crawls and stats. It can't be undone.
+In the app: Profile → Settings → Delete account. This permanently deletes your profile, photo, preferences, saved spots, crawls, lists, friends and stats, and links to anything you shared stop working. It can't be undone.
 
 Can't get into the app? Email [support@mesamesa.app](mailto:support@mesamesa.app) from the address you signed up with and ask us to delete your account. We'll confirm when it's done.

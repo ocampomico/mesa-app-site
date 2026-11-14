@@ -31,6 +31,11 @@ jobs:
         with:
           node-version: 22
       - run: node build.mjs --strict
+        env:
+          # Repository variables (Settings → Secrets and variables → Actions → Variables).
+          # Without them the site still builds; share links just open the web page, not the app.
+          APPLE_TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
+          ANDROID_SHA256: ${{ vars.ANDROID_SHA256 }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

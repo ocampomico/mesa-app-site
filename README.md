@@ -31,6 +31,19 @@ Email apps and browsers wrap links in their own redirects, which can't reliably 
 
 The pages forward only `code`, `error`, `error_code` and `error_description`, and ask search engines not to index them. If you rename these paths, change the matching URLs in the app and the redirect list in the auth provider settings.
 
+## Share links
+
+Links shared from the app are `https://mesamesa.app/s/?t=<token>`. With the app installed they open there. Without it, `/s/` shows what was shared as a plain list: the title, who shared it, and each place's name and address with a link to Google Maps, plus Google's attribution. There's no map, photo or rating on the page: Google content may only sit on a Google map. The page reads `GET /api/v1/public/share/{token}` from the API (`MESA_API_URL` at build time), which serves "Anyone with the link" content only.
+
+Opening in the app needs two files under `/.well-known/`. The build writes them only when it has the ids, and warns when it doesn't:
+
+| Variable | File | Value |
+|---|---|---|
+| `APPLE_TEAM_ID` | `apple-app-site-association` | The Apple Developer team id (10 characters) |
+| `ANDROID_SHA256` | `assetlinks.json` | The app's signing certificate SHA-256 fingerprint(s), comma-separated (`eas credentials -p android`, or Play Console → App signing) |
+
+For the deploy, set both as repository variables (Settings → Secrets and variables → Actions → Variables). Only `/s` is associated, so other pages on the site never open the app. iOS fetches the file when the app is installed or updated, so a change can take a reinstall to show.
+
 ## Layout
 
 | Path | What |

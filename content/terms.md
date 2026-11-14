@@ -12,6 +12,7 @@ These terms are the agreement between you and Mesa ("we", "us"), based in Califo
 - Mesa is for people 18 and older. If a crawl includes drinks, you need to be of legal drinking age, and nobody on it should drive after drinking.
 - Places can't pay to rank higher on Mesa.
 - Use Mesa for yourself, not to copy, scrape or overload it.
+- What you share with other people has to be yours to share and fit for them to see. You can block or report anyone.
 - You can delete your account anytime from inside the app.
 
 ## Who can use Mesa
@@ -62,11 +63,23 @@ Don't:
 - reverse engineer the app or our server, except where the law allows it;
 - interfere with Mesa or put an unreasonable load on it;
 - upload a photo you don't have the right to use, or anything unlawful, sexual or hateful;
+- put anything hateful, sexual, threatening or misleading in a name, handle, list or anything else other people can see;
+- pretend to be someone else, or send friend requests or links to people who've made clear they don't want them;
 - use Mesa to break the law or to harass anyone.
+
+## Sharing with other people
+
+Mesa lets you add friends and share crawls and lists with them or by link. There's no tolerance for objectionable content or abusive behavior here.
+
+- You decide who sees what. Crawls and lists are private until you share them, and you can make them private again.
+- You're responsible for what you share and who you send links to. Anyone with a link set to "Anyone with the link" can open it.
+- You can **block** anyone, which hides you from each other and ends the friendship, and you can **report** a person, a crawl or a list from the screen it's on. We review reports within 24 hours, and remove content and close accounts that break these terms.
+- Names, handles and list titles pass an automatic word filter. It won't catch everything, which is what reports are for.
+- A friend's crawl or list is their suggestion, not ours. Check details yourself before you go.
 
 ## Your content
 
-Your profile photo, name, handle, preferences and anything you type into Mesa stay yours. You give us permission to store, process and display them only as needed to run Mesa for you. That includes sending them to the service providers named in the [privacy policy](/privacy/#who-we-share-data-with): Supabase for storage, Amazon Web Services for hosting, Google for maps and place search, and Anthropic for AI picks if you turn them on. We don't sell your content or use it to train AI models.
+Your profile photo, name, handle, preferences, lists and anything you type into Mesa stay yours. You give us permission to store, process and display them only as needed to run Mesa for you, which includes showing what you share to the people you share it with. That includes sending them to the service providers named in the [privacy policy](/privacy/#who-we-share-data-with): Supabase for storage, Amazon Web Services for hosting, Google for maps and place search, and Anthropic for AI picks if you turn them on. We don't sell your content or use it to train AI models.
 
 We may use totals that don't identify anyone, such as how many searches Mesa ran in a day, to run and improve Mesa.
 

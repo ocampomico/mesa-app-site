@@ -3,8 +3,15 @@
 //   node build.mjs            build; warn about unfilled [placeholders]
 //   node build.mjs --strict   same, but fail if any remain (used by the deploy)
 //
-// Pages: / (landing), /privacy/, /terms/ and /support/ (from content/*.md), and
-// /auth/confirm/ and /auth/reset/ (where email links land, then open the app).
+// Pages: / (landing), /privacy/, /terms/ and /support/ (from content/*.md),
+// /auth/confirm/ and /auth/reset/ (where email links land, then open the app),
+// and /s/ (what a share link shows someone who doesn't have the app).
+//
+// Share links open in the app through universal links. Those need two files
+// under /.well-known/, written only when the ids are given:
+//   APPLE_TEAM_ID=ABCDE12345                apple-app-site-association
+//   ANDROID_SHA256=AA:BB:...[,CC:DD:...]    assetlinks.json (signing certificate fingerprints)
+//   MESA_API_URL=https://...                the API the share page reads from
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -15,6 +22,8 @@ const strict = process.argv.includes('--strict');
 
 const SITE = 'https://mesamesa.app';
 const EMAIL = 'support@mesamesa.app';
+const API = (process.env.MESA_API_URL || 'https://mesa-api.rdcaabvvaacfm.us-east-1.cs.amazonlightsail.com').replace(/\/$/, '');
+const BUNDLE_ID = 'app.mesamesa.mobile';
 
 // --- a small Markdown subset: headings, paragraphs, lists, tables, links, bold, italic ---
 
@@ -169,6 +178,15 @@ footer a,footer em{color:var(--faint)}
 [hidden]{display:none!important}
 .handoff{padding-bottom:24px}
 .handoff .ctas{margin-top:8px}
+.shared{max-width:560px;margin:0 auto;text-align:left}
+.shared ol{list-style:none;margin:0 0 20px;padding:0;border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}
+.shared li{margin:0;padding:14px 16px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:baseline}
+.shared li:last-child{border-bottom:0}
+.shared .n{flex:0 0 22px;font:600 13px var(--sans);color:var(--accent)}
+.shared .name{display:block;font-weight:600;color:var(--text);text-decoration:none}
+.shared a.name:hover{text-decoration:underline}
+.shared .addr{display:block;color:var(--faint);font-size:14px;line-height:1.4}
+.shared .credit{color:var(--faint);font-size:13px;margin:0 0 24px}
 .fine{color:var(--faint);font-size:14px;line-height:1.5;max-width:30em;margin:22px auto 0}
 `;
 
@@ -376,6 +394,74 @@ const handoffPages = {
   }),
 };
 
+// --- share links ---
+//
+// https://mesamesa.app/s/?t=<token>. With the app installed the link opens
+// there and this page is never seen. Without it, this page shows what was
+// shared as a plain list: names, addresses and a link to each place on Google
+// Maps, with Google's attribution. No map, photos or ratings here: Google
+// content may only sit on a Google map, and the app is where that lives.
+// Everything is set with textContent, never innerHTML: titles are typed by users.
+const shareScript = `(function(){
+var t=new URLSearchParams(location.search).get('t')||'';
+var $=function(id){return document.getElementById(id)};
+function fail(){$('loading').hidden=true;$('gone').hidden=false}
+if(!/^[A-Za-z0-9]{10,32}$/.test(t)){fail();return}
+fetch(${JSON.stringify(API)}+'/api/v1/public/share/'+t).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+var places=d.places||[],n=places.length+(d.morePlaces||0);
+$('kind').textContent=d.kind==='crawl'?'A crawl on Mesa':d.kind==='list'?'A list on Mesa':'A place on Mesa';
+$('title').textContent=d.title||'Shared on Mesa';
+document.title=(d.title||'Shared')+' · Mesa';
+var bits=[];
+if(d.sharedBy)bits.push('Shared by '+d.sharedBy);
+if(d.kind==='crawl')bits.push(n+(n===1?' stop':' stops')+(d.travel==='drive'?', driving':', on foot'));
+if(d.kind==='list')bits.push(n+(n===1?' place':' places'));
+$('meta').textContent=bits.join(' · ');
+if(d.description){$('desc').textContent=d.description;$('desc').hidden=false}
+var ol=$('places');
+places.forEach(function(p,i){
+var li=document.createElement('li');
+if(d.kind==='crawl'){var k=document.createElement('span');k.className='n';k.textContent=String(i+1);li.appendChild(k)}
+var box=document.createElement('span'),name=document.createElement(p.mapsUrl&&/^https:\\/\\//.test(p.mapsUrl)?'a':'span');
+name.className='name';name.textContent=p.name;
+if(name.tagName==='A'){name.href=p.mapsUrl;name.rel='noopener';name.target='_blank'}
+box.appendChild(name);
+if(p.address){var a=document.createElement('span');a.className='addr';a.textContent=p.address;box.appendChild(a)}
+li.appendChild(box);ol.appendChild(li)});
+if(!places.length)ol.hidden=true;
+if(d.morePlaces){$('more').textContent=(places.length?'Plus '+d.morePlaces+' more. ':'')+'Open it in Mesa to see everything.';$('more').hidden=false}
+$('credit').hidden=!places.length;
+$('loading').hidden=true;$('shared').hidden=false;
+}).catch(fail);
+})()`;
+
+const sharePage = page({
+  path: '/s/',
+  title: 'Shared on Mesa',
+  description: 'Someone shared a place, a crawl or a list with you on Mesa.',
+  noindex: true,
+  body: `
+<section class="hero handoff">
+<p class="lede" id="loading">One moment…</p>
+<div id="gone" hidden>
+<h1>This link isn’t <em>available.</em></h1>
+<p class="lede">It may have been made private or removed. If a friend sent it, ask them to check how it’s shared.</p>
+</div>
+<div id="shared" class="shared" hidden>
+<span class="eyebrow" id="kind"></span>
+<h1 id="title"></h1>
+<p class="lede" id="meta"></p>
+<p id="desc" hidden></p>
+<ol id="places"></ol>
+<p class="fine" id="more" hidden></p>
+<p class="credit" id="credit">Place names and addresses from Google Maps. Tap a place to open it there.</p>
+<div class="ctas"><a class="btn-lg" href="/#join">Get Mesa</a></div>
+<p class="fine">Have Mesa already? Open this link on the phone that has it. The route, hours and photos are in the app.</p>
+</div>
+</section>
+<script>${shareScript}</script>`,
+});
+
 // --- build ---
 
 rmSync(out, { recursive: true, force: true });
@@ -391,6 +477,30 @@ const write = (path, html) => {
 write('/', page({ path: '/', title: 'Mesa: find your place at the table', description: 'Food and drink spots picked for how you like to eat, and crawls planned around your mood.', body: landing }));
 
 for (const [path, html] of Object.entries(handoffPages)) write(path, html);
+write('/s/', sharePage);
+
+// Universal links: which paths open the app. Only /s/ (share links); the
+// /auth/ pages hand off with the mesa:// scheme instead.
+const wellKnown = join(out, '.well-known');
+const teamId = (process.env.APPLE_TEAM_ID || '').trim();
+const androidCerts = (process.env.ANDROID_SHA256 || '').split(',').map((v) => v.trim()).filter(Boolean);
+if (teamId || androidCerts.length) mkdirSync(wellKnown, { recursive: true });
+if (teamId) {
+  writeFileSync(
+    join(wellKnown, 'apple-app-site-association'),
+    JSON.stringify({ applinks: { details: [{ appIDs: [`${teamId}.${BUNDLE_ID}`], components: [{ '/': '/s/*', comment: 'Share links' }, { '/': '/s', comment: 'Share links' }] }] } }),
+  );
+} else {
+  console.warn('APPLE_TEAM_ID not set: no apple-app-site-association, so share links open the web page on iPhone instead of the app.');
+}
+if (androidCerts.length) {
+  writeFileSync(
+    join(wellKnown, 'assetlinks.json'),
+    JSON.stringify([{ relation: ['delegate_permission/common.handle_all_urls'], target: { namespace: 'android_app', package_name: BUNDLE_ID, sha256_cert_fingerprints: androidCerts } }]),
+  );
+} else {
+  console.warn('ANDROID_SHA256 not set: no assetlinks.json, so share links open the web page on Android instead of the app.');
+}
 
 let unfilled = 0;
 const docs = [
